@@ -174,7 +174,7 @@
     .floor-plan h3{font-size:16px;font-weight:900;margin-bottom:16px;color:#000;text-transform:uppercase;letter-spacing:0.3px}
     .fp-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
     @media(max-width:600px){.fp-grid{grid-template-columns:repeat(4,1fr)}}
-    .fp-unit{border:2px solid #000;border-radius:8px;padding:12px 6px;text-align:center;font-size:11px;font-weight:800;transition:.2s;cursor:default;display:flex;flex-direction:column;align-items:center;gap:3px}
+    .fp-unit{border:2px solid #000;border-radius:8px;padding:12px 6px;text-align:center;font-size:11px;font-weight:800;transition:.2s;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px}
     .fp-unit .u-num{font-weight:900;font-size:13px;color:#000}
     .fp-unit .u-size{font-size:9px;font-weight:700;color:#000}
     .fp-unit.available{background:#00C853;border-color:#000;color:#000}
@@ -256,6 +256,138 @@
     @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
     .fade-in{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease}
     .fade-in.visible{opacity:1;transform:translateY(0)}
+
+    /* ════════════════════════════════════════════════
+       ADMIN PANEL STYLES
+       ════════════════════════════════════════════════ */
+    #adminToggle{position:fixed;bottom:20px;right:20px;z-index:10000;width:44px;height:44px;background:#000;color:#FFCC00;border:3px solid #FFCC00;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:20px;transition:.3s;box-shadow:0 4px 12px rgba(0,0,0,0.3)}
+    #adminToggle:hover{transform:scale(1.1) rotate(30deg);background:#FFCC00;color:#000;border-color:#000}
+    .admin-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9998;opacity:0;pointer-events:none;transition:opacity 0.3s}
+    .admin-overlay.open{opacity:1;pointer-events:auto}
+    .admin-panel{position:fixed;top:0;left:0;right:0;max-height:100vh;overflow-y:auto;background:#FFCC00;border-bottom:4px solid #000;z-index:9999;transform:translateY(-120%);transition:transform 0.4s cubic-bezier(0.16,1,0.3,1);box-shadow:0 12px 40px rgba(0,0,0,0.3)}
+    .admin-panel.open{transform:translateY(0)}
+    .admin-panel .admin-inner{padding:32px 24px 48px;max-width:1100px;margin:0 auto}
+    .admin-panel .admin-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;padding-bottom:16px;border-bottom:3px solid #000}
+    .admin-panel .admin-header h2{font-size:24px;font-weight:900;display:flex;align-items:center;gap:10px}
+    .admin-panel .admin-header .admin-close{background:#000;color:#FFCC00;border:none;width:36px;height:36px;border-radius:10px;font-size:18px;cursor:pointer;font-weight:900;border:2px solid #000;transition:.2s}
+    .admin-panel .admin-header .admin-close:hover{background:#FFCC00;color:#000}
+    .admin-login-form{max-width:400px;margin:60px auto;text-align:center}
+    .admin-login-form h3{font-size:22px;font-weight:900;margin-bottom:20px}
+    .admin-login-form input{width:100%;padding:14px 18px;border:3px solid #000;border-radius:12px;font-size:16px;font-weight:700;background:#fff;color:#000;font-family:'Inter',sans-serif;outline:none;margin-bottom:16px}
+    .admin-login-form input:focus{border-color:#000;box-shadow:0 0 0 3px rgba(0,0,0,0.2)}
+    .admin-login-form .admin-error{color:#FF1744;font-size:13px;font-weight:700;margin-top:8px;display:none}
+
+    /* Admin Tab Navigation */
+    .admin-tabs{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:24px;border-bottom:3px solid #000;padding-bottom:4px}
+    .admin-tabs button{padding:10px 18px;border:2px solid #000;border-radius:10px 10px 0 0;background:#fff;color:#000;font-weight:800;font-size:13px;cursor:pointer;transition:.2s;font-family:'Inter',sans-serif;border-bottom:none;margin-bottom:-4px}
+    .admin-tabs button:hover{background:#000;color:#FFCC00}
+    .admin-tabs button.active{background:#000;color:#FFCC00}
+
+    .admin-tab-content{display:none}
+    .admin-tab-content.active{display:block}
+
+    /* Admin form elements */
+    .admin-section{background:#fff;border:3px solid #000;border-radius:16px;padding:24px;margin-bottom:20px}
+    .admin-section h3{font-size:16px;font-weight:900;margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid #000;display:flex;align-items:center;gap:8px}
+    .admin-form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+    @media(max-width:600px){.admin-form-row{grid-template-columns:1fr}}
+    .admin-form-group label{display:block;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:4px;color:#000}
+    .admin-form-group input{width:100%;padding:10px 14px;border:2px solid #000;border-radius:10px;font-size:14px;font-weight:700;background:#FFCC00;color:#000;font-family:'Inter',sans-serif;outline:none}
+    .admin-form-group input:focus{border-color:#000;box-shadow:0 0 0 3px rgba(0,0,0,0.15)}
+    .admin-btn{background:#000;color:#FFCC00;border:2px solid #000;padding:10px 22px;font-size:13px;font-weight:800;border-radius:10px;cursor:pointer;transition:.25s;font-family:'Inter',sans-serif;display:inline-flex;align-items:center;gap:6px}
+    .admin-btn:hover{background:#FFCC00;color:#000}
+    .admin-btn-sm{background:#000;color:#FFCC00;border:2px solid #000;padding:6px 14px;font-size:12px;font-weight:800;border-radius:8px;cursor:pointer;transition:.2s;font-family:'Inter',sans-serif}
+    .admin-btn-sm:hover{background:#FFCC00;color:#000}
+    .admin-btn-sm.danger{background:#FF1744;color:#fff;border-color:#FF1744}
+    .admin-btn-sm.danger:hover{background:#fff;color:#FF1744}
+    .admin-btn-sm.success{background:#00C853;color:#000;border-color:#00C853}
+    .admin-btn-sm.success:hover{background:#000;color:#00C853}
+    .admin-saved-msg{display:inline-block;background:#00C853;color:#000;padding:4px 14px;border-radius:8px;font-size:12px;font-weight:800;margin-left:10px;opacity:0;transition:opacity 0.3s}
+    .admin-saved-msg.show{opacity:1}
+
+    /* Admin Accounts Table */
+    .admin-table-wrap{overflow-x:auto}
+    .admin-table{width:100%;border-collapse:collapse;font-size:13px}
+    .admin-table th{text-align:left;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:0.3px;padding:10px 12px;border-bottom:3px solid #000;color:#000;white-space:nowrap}
+    .admin-table td{padding:10px 12px;border-bottom:2px solid #000;font-size:13px;font-weight:700;color:#000}
+    .admin-table tr:hover td{background:rgba(0,0,0,0.04)}
+    .admin-table .status-badge{display:inline-block;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:800;border:2px solid #000}
+    .admin-table .status-badge.active{background:#00C853;color:#000;border-color:#000}
+    .admin-table .status-badge.inactive{background:#FF1744;color:#fff;border-color:#FF1744}
+
+    /* Add Account Form */
+    .admin-add-account{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:16px;padding:16px;background:#FFCC00;border:2px solid #000;border-radius:12px}
+    .admin-add-account input{padding:8px 12px;border:2px solid #000;border-radius:8px;font-size:13px;font-weight:700;background:#fff;color:#000;font-family:'Inter',sans-serif;outline:none}
+    .admin-add-account input:focus{border-color:#000;box-shadow:0 0 0 3px rgba(0,0,0,0.15)}
+
+    /* Storage Units Admin Grid */
+    .admin-units-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+    .admin-unit-card{background:#FFCC00;border:2px solid #000;border-radius:12px;padding:14px;font-size:13px}
+    .admin-unit-card h4{font-size:14px;font-weight:900;margin-bottom:6px;display:flex;justify-content:space-between}
+    .admin-unit-card .unit-status-select{width:100%;padding:6px 8px;border:2px solid #000;border-radius:6px;font-size:12px;font-weight:700;background:#fff;font-family:'Inter',sans-serif;margin-bottom:6px}
+    .admin-unit-card input{width:100%;padding:6px 8px;border:2px solid #000;border-radius:6px;font-size:11px;font-weight:700;background:#fff;font-family:'Inter',sans-serif;margin-bottom:4px}
+    .admin-unit-card input:focus{border-color:#000;outline:none}
+
+    /* Carpark Plan Upload Section */
+    .plan-upload-area{background:#FFCC00;border:3px dashed #000;border-radius:16px;padding:32px;text-align:center;cursor:pointer;transition:.3s}
+    .plan-upload-area:hover{background:#fff;border-style:solid}
+    .plan-upload-area.dragover{background:#fff;border-color:#00C853}
+    .plan-upload-area input[type=file]{display:none}
+    .plan-upload-area .upload-icon{font-size:48px;margin-bottom:12px;display:block}
+    .plan-upload-area p{font-size:14px;font-weight:700;color:#000}
+    .plan-upload-area p small{font-size:12px;font-weight:600;display:block;margin-top:4px;color:#666}
+
+    /* Plan with hotspots overlay */
+    .plan-container{position:relative;display:inline-block;width:100%;max-width:800px;margin:0 auto}
+    .plan-container img{width:100%;border:3px solid #000;border-radius:12px;display:block}
+    .plan-hotspot{position:absolute;width:28px;height:28px;background:#000;border:3px solid #FFCC00;border-radius:50%;transform:translate(-50%,-50%);cursor:pointer;transition:.2s;z-index:5;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:900;color:#FFCC00}
+    .plan-hotspot:hover{transform:translate(-50%,-50%) scale(1.3);background:#FFCC00;color:#000;border-color:#000}
+    .plan-hotspot.occupied{background:#FF1744;border-color:#000;color:#fff}
+    .plan-hotspot.booked{background:#FFB300;border-color:#000;color:#000}
+    .plan-hotspot.available{background:#00C853;border-color:#000;color:#000}
+
+    /* Unit Detail Modal */
+    .unit-modal{position:fixed;inset:0;z-index:10001;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s;padding:20px}
+    .unit-modal.open{opacity:1;pointer-events:auto}
+    .unit-modal .modal-backdrop{position:absolute;inset:0;background:rgba(0,0,0,0.6)}
+    .unit-modal .modal-content{position:relative;background:#FFCC00;border:4px solid #000;border-radius:24px;padding:32px;max-width:480px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,0.4);animation:modalIn 0.3s ease}
+    @keyframes modalIn{from{transform:scale(0.9) translateY(20px);opacity:0}to{transform:scale(1) translateY(0);opacity:1}}
+    .unit-modal .modal-close{position:absolute;top:12px;right:12px;background:#000;color:#FFCC00;border:none;width:32px;height:32px;border-radius:8px;font-size:16px;cursor:pointer;font-weight:900;border:2px solid #000;transition:.2s}
+    .unit-modal .modal-close:hover{background:#FFCC00;color:#000}
+    .unit-modal .modal-unit-num{font-size:28px;font-weight:900;margin-bottom:4px}
+    .unit-modal .modal-unit-size{font-size:14px;font-weight:700;margin-bottom:16px;color:#666}
+    .unit-modal .modal-status{display:inline-block;padding:6px 16px;border-radius:8px;font-size:13px;font-weight:800;border:2px solid #000;margin-bottom:16px}
+    .unit-modal .modal-status.available{background:#00C853;color:#000}
+    .unit-modal .modal-status.occupied{background:#FF1744;color:#fff}
+    .unit-modal .modal-status.booked{background:#FFB300;color:#000}
+    .unit-modal .modal-details{background:#fff;border:2px solid #000;border-radius:12px;padding:16px;margin-bottom:16px}
+    .unit-modal .modal-details .detail-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #000;font-size:13px;font-weight:600}
+    .unit-modal .modal-details .detail-row:last-child{border-bottom:none}
+    .unit-modal .modal-details .detail-row .label{font-weight:700;color:#666}
+    .unit-modal .modal-details .detail-row .value{font-weight:800}
+    .unit-modal .modal-actions{display:flex;gap:10px}
+    .unit-modal .modal-actions button{flex:1;padding:12px;border-radius:10px;font-size:13px;font-weight:800;cursor:pointer;transition:.2s;font-family:'Inter',sans-serif;text-align:center}
+    .unit-modal .modal-actions .edit-btn{background:#000;color:#FFCC00;border:2px solid #000}
+    .unit-modal .modal-actions .edit-btn:hover{background:#FFCC00;color:#000}
+    .unit-modal .modal-actions .release-btn{background:#FF1744;color:#fff;border:2px solid #FF1744}
+    .unit-modal .modal-actions .release-btn:hover{background:#fff;color:#FF1744}
+
+    /* Admin save toast */
+    .admin-toast{position:fixed;bottom:80px;right:24px;background:#000;color:#FFCC00;padding:14px 24px;border-radius:12px;font-size:14px;font-weight:800;border:2px solid #FFCC00;z-index:10002;transform:translateY(80px);opacity:0;transition:all 0.4s;box-shadow:0 6px 20px rgba(0,0,0,0.3)}
+    .admin-toast.show{transform:translateY(0);opacity:1}
+
+    /* ── Admin: Modal for editing unit details ── */
+    .edit-unit-modal{position:fixed;inset:0;z-index:10003;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s;padding:20px}
+    .edit-unit-modal.open{opacity:1;pointer-events:auto}
+    .edit-unit-modal .e-backdrop{position:absolute;inset:0;background:rgba(0,0,0,0.6)}
+    .edit-unit-modal .e-content{position:relative;background:#FFCC00;border:4px solid #000;border-radius:24px;padding:32px;max-width:420px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,0.4)}
+    .edit-unit-modal .e-close{position:absolute;top:12px;right:12px;background:#000;color:#FFCC00;border:none;width:32px;height:32px;border-radius:8px;font-size:16px;cursor:pointer;font-weight:900;border:2px solid #000}
+    .edit-unit-modal .e-close:hover{background:#FFCC00;color:#000}
+    .edit-unit-modal h3{font-size:18px;font-weight:900;margin-bottom:16px}
+    .edit-unit-modal .e-field{margin-bottom:12px}
+    .edit-unit-modal .e-field label{display:block;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:4px;color:#000}
+    .edit-unit-modal .e-field input,.edit-unit-modal .e-field select{width:100%;padding:10px 14px;border:2px solid #000;border-radius:10px;font-size:14px;font-weight:700;background:#fff;color:#000;font-family:'Inter',sans-serif;outline:none}
+    .edit-unit-modal .e-field input:focus,.edit-unit-modal .e-field select:focus{border-color:#000;box-shadow:0 0 0 3px rgba(0,0,0,0.15)}
   </style>
 </head>
 <body>
@@ -349,9 +481,9 @@
           <div class="stat-change down">▼ 3 since yesterday</div>
         </div>
         <div class="stat-card">
-          <div class="stat-num">8/12</div>
+          <div class="stat-num" id="storageOccupiedCount">8/12</div>
           <div class="stat-label">Storage Units</div>
-          <div class="stat-change up">▲ 67% occupied</div>
+          <div class="stat-change up" id="storageOccupiedPct">▲ 67% occupied</div>
         </div>
       </div>
 
@@ -495,7 +627,7 @@
           </div>
         </div>
         <div class="promo-visual">
-          <div class="big-num">£280</div>
+          <div class="big-num" id="promoMonthlyRate">£280</div>
           <div class="big-label">per month · All-inclusive</div>
           <div class="badge-group">
             <span>24/7 Access</span>
@@ -521,53 +653,55 @@
         <!-- Floor Plan -->
         <div class="floor-plan">
           <h3>📐 Storage Unit Floor Plan</h3>
-          <div class="fp-grid">
+          <div class="fp-grid" id="fpGrid">
             <!-- Small units -->
-            <div class="fp-unit occupied"><span class="u-num">S1</span><span class="u-size">3×3ft</span></div>
-            <div class="fp-unit available"><span class="u-num">S2</span><span class="u-size">3×3ft</span></div>
-            <div class="fp-unit available"><span class="u-num">S3</span><span class="u-size">3×3ft</span></div>
-            <div class="fp-unit occupied"><span class="u-num">S4</span><span class="u-size">3×3ft</span></div>
-            <div class="fp-unit occupied"><span class="u-num">S5</span><span class="u-size">3×3ft</span></div>
-            <div class="fp-unit available"><span class="u-num">S6</span><span class="u-size">3×3ft</span></div>
-            <div class="fp-unit occupied"><span class="u-num">S7</span><span class="u-size">3×3ft</span></div>
-            <div class="fp-unit available"><span class="u-num">S8</span><span class="u-size">3×3ft</span></div>
-            <div class="fp-unit booked"><span class="u-num">S9</span><span class="u-size">3×3ft</span></div>
-            <div class="fp-unit available"><span class="u-num">S10</span><span class="u-size">3×3ft</span></div>
+            <div class="fp-unit occupied" data-unit="S1" data-size="3×3ft"><span class="u-num">S1</span><span class="u-size">3×3ft</span></div>
+            <div class="fp-unit available" data-unit="S2" data-size="3×3ft"><span class="u-num">S2</span><span class="u-size">3×3ft</span></div>
+            <div class="fp-unit available" data-unit="S3" data-size="3×3ft"><span class="u-num">S3</span><span class="u-size">3×3ft</span></div>
+            <div class="fp-unit occupied" data-unit="S4" data-size="3×3ft"><span class="u-num">S4</span><span class="u-size">3×3ft</span></div>
+            <div class="fp-unit occupied" data-unit="S5" data-size="3×3ft"><span class="u-num">S5</span><span class="u-size">3×3ft</span></div>
+            <div class="fp-unit available" data-unit="S6" data-size="3×3ft"><span class="u-num">S6</span><span class="u-size">3×3ft</span></div>
+            <div class="fp-unit occupied" data-unit="S7" data-size="3×3ft"><span class="u-num">S7</span><span class="u-size">3×3ft</span></div>
+            <div class="fp-unit available" data-unit="S8" data-size="3×3ft"><span class="u-num">S8</span><span class="u-size">3×3ft</span></div>
+            <div class="fp-unit booked" data-unit="S9" data-size="3×3ft"><span class="u-num">S9</span><span class="u-size">3×3ft</span></div>
+            <div class="fp-unit available" data-unit="S10" data-size="3×3ft"><span class="u-num">S10</span><span class="u-size">3×3ft</span></div>
             <!-- Medium units -->
-            <div class="fp-unit occupied"><span class="u-num">M1</span><span class="u-size">4×4ft</span></div>
-            <div class="fp-unit occupied"><span class="u-num">M2</span><span class="u-size">4×4ft</span></div>
-            <div class="fp-unit available"><span class="u-num">M3</span><span class="u-size">4×4ft</span></div>
-            <div class="fp-unit booked"><span class="u-num">M4</span><span class="u-size">4×4ft</span></div>
-            <div class="fp-unit available"><span class="u-num">M5</span><span class="u-size">4×4ft</span></div>
-            <div class="fp-unit occupied"><span class="u-num">M6</span><span class="u-size">4×4ft</span></div>
+            <div class="fp-unit occupied" data-unit="M1" data-size="4×4ft"><span class="u-num">M1</span><span class="u-size">4×4ft</span></div>
+            <div class="fp-unit occupied" data-unit="M2" data-size="4×4ft"><span class="u-num">M2</span><span class="u-size">4×4ft</span></div>
+            <div class="fp-unit available" data-unit="M3" data-size="4×4ft"><span class="u-num">M3</span><span class="u-size">4×4ft</span></div>
+            <div class="fp-unit booked" data-unit="M4" data-size="4×4ft"><span class="u-num">M4</span><span class="u-size">4×4ft</span></div>
+            <div class="fp-unit available" data-unit="M5" data-size="4×4ft"><span class="u-num">M5</span><span class="u-size">4×4ft</span></div>
+            <div class="fp-unit occupied" data-unit="M6" data-size="4×4ft"><span class="u-num">M6</span><span class="u-size">4×4ft</span></div>
             <!-- Large units -->
-            <div class="fp-unit available"><span class="u-num">L1</span><span class="u-size">5×5ft</span></div>
-            <div class="fp-unit occupied"><span class="u-num">L2</span><span class="u-size">5×5ft</span></div>
-            <div class="fp-unit occupied"><span class="u-num">L3</span><span class="u-size">5×5ft</span></div>
-            <div class="fp-unit available"><span class="u-num">L4</span><span class="u-size">5×5ft</span></div>
+            <div class="fp-unit available" data-unit="L1" data-size="5×5ft"><span class="u-num">L1</span><span class="u-size">5×5ft</span></div>
+            <div class="fp-unit occupied" data-unit="L2" data-size="5×5ft"><span class="u-num">L2</span><span class="u-size">5×5ft</span></div>
+            <div class="fp-unit occupied" data-unit="L3" data-size="5×5ft"><span class="u-num">L3</span><span class="u-size">5×5ft</span></div>
+            <div class="fp-unit available" data-unit="L4" data-size="5×5ft"><span class="u-num">L4</span><span class="u-size">5×5ft</span></div>
             <!-- Extra Large -->
-            <div class="fp-unit occupied"><span class="u-num">XL1</span><span class="u-size">5×10ft</span></div>
-            <div class="fp-unit available"><span class="u-num">XL2</span><span class="u-size">5×10ft</span></div>
+            <div class="fp-unit occupied" data-unit="XL1" data-size="5×10ft"><span class="u-num">XL1</span><span class="u-size">5×10ft</span></div>
+            <div class="fp-unit available" data-unit="XL2" data-size="5×10ft"><span class="u-num">XL2</span><span class="u-size">5×10ft</span></div>
           </div>
           <div class="fp-legend">
             <span><span class="swatch green"></span> Available</span>
             <span><span class="swatch red"></span> Occupied</span>
             <span><span class="swatch amber"></span> Booked</span>
           </div>
-          <div class="fp-dimensions">Total: 22 units · 12 Available · 8 Occupied · 2 Booked</div>
+          <div class="fp-dimensions" id="fpDimensions">Total: 22 units · Checking...</div>
         </div>
 
         <!-- Pricing -->
         <div class="pricing-card">
           <h3>💷 Storage Pricing</h3>
-          <table class="pricing-table">
+          <table class="pricing-table" id="storagePricingTable">
             <tr><th>Size</th><th>Dimensions</th><th>Price</th></tr>
-            <tr><td>Small</td><td>3 × 3 ft</td><td class="price">£15/week</td></tr>
-            <tr><td>Medium</td><td>4 × 4 ft</td><td class="price">£25/week</td></tr>
-            <tr><td>Large</td><td>5 × 5 ft</td><td class="price">£35/week</td></tr>
-            <tr><td>X-Large</td><td>5 × 10 ft</td><td class="price">£60/week</td></tr>
+            <tr><td>Small</td><td>3 × 3 ft</td><td class="price" id="priceSmall">£15/week</td></tr>
+            <tr><td>Medium</td><td>4 × 4 ft</td><td class="price" id="priceMedium">£25/week</td></tr>
+            <tr><td>Large</td><td>5 × 5 ft</td><td class="price" id="priceLarge">£35/week</td></tr>
+            <tr><td>X-Large</td><td>5 × 10 ft</td><td class="price" id="priceXL">£60/week</td></tr>
           </table>
-
+          <div style="margin-top:16px;padding:12px;background:#FFCC00;border:2px solid #000;border-radius:12px;text-align:center;font-size:14px;font-weight:700">
+            <span>Parking: </span><span id="priceDailyDisplay">£12/day</span> <span style="margin:0 8px">·</span> <span id="priceMonthlyDisplay">£280/month</span>
+          </div>
           <div class="storage-extras">
             <div class="extra">
               <span class="x-icon">📦</span>
@@ -665,12 +799,12 @@
           </div>
 
           <h3 style="margin-top:24px">🕐 Opening Hours</h3>
-          <table class="hours-table">
-            <tr><td>Monday – Friday</td><td>6:00 AM – 10:00 PM</td></tr>
-            <tr><td>Saturday</td><td>7:00 AM – 10:00 PM</td></tr>
-            <tr><td>Sunday &amp; Bank Holidays</td><td>8:00 AM – 8:00 PM</td></tr>
-            <tr><td>Storage Access</td><td>24/7 · Keycode Entry</td></tr>
-            <tr><td>Monthly Subscribers</td><td>24/7 · ANPR Access</td></tr>
+          <table class="hours-table" id="hoursTable">
+            <tr id="hoursRowMonFri"><td>Monday – Friday</td><td>6:00 AM – 10:00 PM</td></tr>
+            <tr id="hoursRowSat"><td>Saturday</td><td>7:00 AM – 10:00 PM</td></tr>
+            <tr id="hoursRowSun"><td>Sunday &amp; Bank Holidays</td><td>8:00 AM – 8:00 PM</td></tr>
+            <tr id="hoursRowStorage"><td>Storage Access</td><td>24/7 · Keycode Entry</td></tr>
+            <tr id="hoursRowMonthly"><td>Monthly Subscribers</td><td>24/7 · ANPR Access</td></tr>
           </table>
         </div>
 
@@ -728,8 +862,256 @@
       <p style="font-size:13px;color:#999;margin-top:4px">Company No. 07076673</p>
       <div class="f-hr"></div>
       <p class="f-small">© 2026 City Car Parks &amp; Storage Ltd. All rights reserved.</p>
+      <!-- Hidden admin access -->
+      <div style="margin-top:12px;opacity:0.3;font-size:11px;color:#666;cursor:default">⚙️</div>
     </div>
   </footer>
+
+  <!-- ════════════════════════════════════════════════
+       ADMIN PANEL (Hidden by default)
+       ════════════════════════════════════════════════ -->
+  <!-- Admin Toggle Button -->
+  <button id="adminToggle" title="Admin Panel">⚙️</button>
+
+  <!-- Backdrop -->
+  <div class="admin-overlay" id="adminOverlay"></div>
+
+  <!-- Admin Panel Slide-Down -->
+  <div class="admin-panel" id="adminPanel">
+    <div class="admin-inner">
+
+      <!-- LOGIN SCREEN -->
+      <div id="adminLogin">
+        <div class="admin-login-form">
+          <h3>🔐 Admin Login</h3>
+          <input type="password" id="adminPwd" placeholder="Enter admin password" />
+          <button class="btn-black" id="adminLoginBtn" style="width:100%;justify-content:center">Unlock Panel</button>
+          <div class="admin-error" id="adminLoginError">Incorrect password. Try again.</div>
+        </div>
+      </div>
+
+      <!-- ADMIN DASHBOARD (after login) -->
+      <div id="adminDashboard" style="display:none">
+        <div class="admin-header">
+          <h2>⚙️ Admin Panel — City Car Parks &amp; Storage</h2>
+          <button class="admin-close" id="adminClose">✕</button>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="admin-tabs" id="adminTabs">
+          <button class="active" data-tab="tabRates">💰 Rates</button>
+          <button data-tab="tabHours">🕐 Hours</button>
+          <button data-tab="tabAccounts">📋 Accounts</button>
+          <button data-tab="tabPlan">🗺️ Car Park Plan</button>
+          <button data-tab="tabUnits">📦 Storage Units</button>
+        </div>
+
+        <!-- TAB: Parking Rates -->
+        <div class="admin-tab-content active" id="tabRates">
+          <div class="admin-section">
+            <h3>💰 Parking &amp; Storage Rates</h3>
+            <div class="admin-form-row">
+              <div class="admin-form-group">
+                <label>Parking — Daily Rate (£)</label>
+                <input type="number" id="rateDaily" value="12" step="0.5" min="0" />
+              </div>
+              <div class="admin-form-group">
+                <label>Parking — Monthly Rate (£)</label>
+                <input type="number" id="rateMonthly" value="280" step="5" min="0" />
+              </div>
+            </div>
+            <div class="admin-form-row">
+              <div class="admin-form-group">
+                <label>Storage Small — Weekly (£)</label>
+                <input type="number" id="rateStorageSmall" value="15" step="1" min="0" />
+              </div>
+              <div class="admin-form-group">
+                <label>Storage Medium — Weekly (£)</label>
+                <input type="number" id="rateStorageMedium" value="25" step="1" min="0" />
+              </div>
+            </div>
+            <div class="admin-form-row">
+              <div class="admin-form-group">
+                <label>Storage Large — Weekly (£)</label>
+                <input type="number" id="rateStorageLarge" value="35" step="1" min="0" />
+              </div>
+              <div class="admin-form-group">
+                <label>Storage XL — Weekly (£)</label>
+                <input type="number" id="rateStorageXL" value="60" step="1" min="0" />
+              </div>
+            </div>
+            <button class="admin-btn" id="saveRates">💾 Save Rates</button>
+            <span class="admin-saved-msg" id="ratesSavedMsg">✓ Saved!</span>
+          </div>
+        </div>
+
+        <!-- TAB: Opening Hours -->
+        <div class="admin-tab-content" id="tabHours">
+          <div class="admin-section">
+            <h3>🕐 Opening Hours</h3>
+            <div class="admin-form-row">
+              <div class="admin-form-group">
+                <label>Monday – Friday</label>
+                <input type="text" id="hoursMonFri" value="6:00 AM – 10:00 PM" />
+              </div>
+              <div class="admin-form-group">
+                <label>Saturday</label>
+                <input type="text" id="hoursSat" value="7:00 AM – 10:00 PM" />
+              </div>
+            </div>
+            <div class="admin-form-row">
+              <div class="admin-form-group">
+                <label>Sunday &amp; Bank Holidays</label>
+                <input type="text" id="hoursSun" value="8:00 AM – 8:00 PM" />
+              </div>
+              <div class="admin-form-group">
+                <label>Storage Access</label>
+                <input type="text" id="hoursStorage" value="24/7 · Keycode Entry" />
+              </div>
+            </div>
+            <div class="admin-form-row">
+              <div class="admin-form-group">
+                <label>Monthly Subscribers</label>
+                <input type="text" id="hoursMonthly" value="24/7 · ANPR Access" />
+              </div>
+            </div>
+            <button class="admin-btn" id="saveHours">💾 Save Hours</button>
+            <span class="admin-saved-msg" id="hoursSavedMsg">✓ Saved!</span>
+          </div>
+        </div>
+
+        <!-- TAB: Accounts -->
+        <div class="admin-tab-content" id="tabAccounts">
+          <div class="admin-section">
+            <h3>📋 Monthly Subscriber Accounts</h3>
+
+            <!-- Add Account Form -->
+            <div class="admin-add-account" id="addAccountForm">
+              <input type="text" id="newAccName" placeholder="Full Name" />
+              <input type="text" id="newAccReg" placeholder="Vehicle Reg" />
+              <input type="text" id="newAccBay" placeholder="Bay Number" />
+              <input type="date" id="newAccDate" />
+              <button class="admin-btn" id="addAccountBtn">+ Add Account</button>
+            </div>
+
+            <!-- Accounts Table -->
+            <div class="admin-table-wrap">
+              <table class="admin-table" id="accountsTable">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Vehicle Reg</th>
+                    <th>Bay Number</th>
+                    <th>Start Date</th>
+                    <th>Status</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="accountsBody">
+                  <!-- Populated by JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB: Car Park Plan -->
+        <div class="admin-tab-content" id="tabPlan">
+          <div class="admin-section">
+            <h3>🗺️ Car Park Layout &amp; Storage Plan</h3>
+            <!-- Upload -->
+            <div class="plan-upload-area" id="planUploadArea">
+              <span class="upload-icon">📤</span>
+              <p>Click or drag an image to upload your car park floor plan</p>
+              <p><small>Supported: PNG, JPG, WebP</small></p>
+              <input type="file" id="planFileInput" accept="image/*" />
+            </div>
+            <!-- Display Area -->
+            <div id="planDisplayArea" style="margin-top:20px;display:none">
+              <p style="font-size:13px;font-weight:700;margin-bottom:10px">Click a storage unit on the plan to view details:</p>
+              <div class="plan-container" id="planContainer"></div>
+              <button class="admin-btn-sm" id="removePlanBtn" style="margin-top:12px">🗑️ Remove Plan Image</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB: Storage Units Admin -->
+        <div class="admin-tab-content" id="tabUnits">
+          <div class="admin-section">
+            <h3>📦 All Storage Units (22)</h3>
+            <p style="font-size:13px;font-weight:600;margin-bottom:14px">Edit unit details: status, tenant, start date, contract length, phone, and monthly rent.</p>
+            <div class="admin-units-grid" id="adminUnitsGrid">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /adminDashboard -->
+    </div><!-- /admin-inner -->
+  </div><!-- /admin-panel -->
+
+  <!-- ════════════════════════════════════════════════
+       UNIT DETAIL MODAL (public view)
+       ════════════════════════════════════════════════ -->
+  <div class="unit-modal" id="unitModal">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose">✕</button>
+      <div class="modal-unit-num" id="modalUnitNum">S1</div>
+      <div class="modal-unit-size" id="modalUnitSize">3×3ft</div>
+      <div class="modal-status" id="modalStatus">Available</div>
+      <div class="modal-details" id="modalDetails">
+        <div class="detail-row"><span class="label">Status</span><span class="value" id="modalDetailStatus">Available</span></div>
+      </div>
+      <div class="modal-actions">
+        <button class="edit-btn" id="modalEditBtn">✏️ Edit Unit</button>
+        <button class="release-btn" id="modalReleaseBtn">🔓 Release Unit</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════
+       EDIT UNIT MODAL (admin)
+       ════════════════════════════════════════════════ -->
+  <div class="edit-unit-modal" id="editUnitModal">
+    <div class="e-backdrop" id="editUnitBackdrop"></div>
+    <div class="e-content">
+      <button class="e-close" id="editUnitClose">✕</button>
+      <h3 id="editUnitTitle">Edit Unit S1</h3>
+      <div class="e-field">
+        <label>Status</label>
+        <select id="editUnitStatus">
+          <option value="available">Available</option>
+          <option value="occupied">Occupied</option>
+          <option value="booked">Booked</option>
+        </select>
+      </div>
+      <div class="e-field" id="editUnitTenantField">
+        <label>Tenant Name</label>
+        <input type="text" id="editUnitTenant" placeholder="e.g. John Smith" />
+      </div>
+      <div class="e-field" id="editUnitStartField">
+        <label>Contract Start Date</label>
+        <input type="date" id="editUnitStart" />
+      </div>
+      <div class="e-field" id="editUnitContractField">
+        <label>Contract Length (months)</label>
+        <input type="number" id="editUnitContract" min="1" placeholder="e.g. 12" />
+      </div>
+      <div class="e-field" id="editUnitPhoneField">
+        <label>Contact Phone</label>
+        <input type="text" id="editUnitPhone" placeholder="e.g. 07123456789" />
+      </div>
+      <div class="e-field" id="editUnitRentField">
+        <label>Monthly Rent (£)</label>
+        <input type="number" id="editUnitRent" min="0" step="5" placeholder="e.g. 60" />
+      </div>
+      <button class="admin-btn" id="editUnitSave" style="width:100%;justify-content:center;margin-top:8px">💾 Save Unit</button>
+    </div>
+  </div>
+
+  <!-- Admin Toast Notification -->
+  <div class="admin-toast" id="adminToast"></div>
 
   <script>
     // ── Revenue Chart ──
@@ -767,7 +1149,6 @@
 
       document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-      // Also observe cards that might not have the class
       const selectors = '.stat-card, .booking-entry, .partner-card, .service-card, .fp-unit, .legal-card, .contact-card, .monthly-promo, .floor-plan, .pricing-card';
       document.querySelectorAll(selectors).forEach(el => {
         if (!el.classList.contains('fade-in')) {
@@ -784,8 +1165,6 @@
       hamburger.addEventListener('click', () => {
         navLinks.classList.toggle('open');
       });
-
-      // Close nav on link click
       navLinks.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
           navLinks.classList.remove('open');
@@ -793,7 +1172,7 @@
       });
     }
 
-    // ── Smooth scroll for all anchor links ──
+    // ── Smooth scroll ──
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', e => {
         const href = a.getAttribute('href');
@@ -803,6 +1182,634 @@
         if (target) target.scrollIntoView({ behavior: 'smooth' });
       });
     });
+
+    /* ═══════════════════════════════════════════════════
+       ADMIN PANEL — Full Implementation
+       ═══════════════════════════════════════════════════ */
+
+    (function() {
+      'use strict';
+
+      // ─── DOM refs ───
+      const adminToggle   = document.getElementById('adminToggle');
+      const adminPanel    = document.getElementById('adminPanel');
+      const adminOverlay  = document.getElementById('adminOverlay');
+      const adminClose    = document.getElementById('adminClose');
+      const adminLogin    = document.getElementById('adminLogin');
+      const adminDash     = document.getElementById('adminDashboard');
+      const adminPwd      = document.getElementById('adminPwd');
+      const adminLoginBtn = document.getElementById('adminLoginBtn');
+      const adminLoginErr = document.getElementById('adminLoginError');
+      const adminToast    = document.getElementById('adminToast');
+      const unitModal     = document.getElementById('unitModal');
+      const editUnitModal = document.getElementById('editUnitModal');
+
+      const ADMIN_PASSWORD = 'admin123';
+
+      // ─── Unit data definition ───
+      const UNIT_NAMES = ['S1','S2','S3','S4','S5','S6','S7','S8','S9','S10','M1','M2','M3','M4','M5','M6','L1','L2','L3','L4','XL1','XL2'];
+      const UNIT_SIZES = { S1:'3×3ft', S2:'3×3ft', S3:'3×3ft', S4:'3×3ft', S5:'3×3ft', S6:'3×3ft', S7:'3×3ft', S8:'3×3ft', S9:'3×3ft', S10:'3×3ft', M1:'4×4ft', M2:'4×4ft', M3:'4×4ft', M4:'4×4ft', M5:'4×4ft', M6:'4×4ft', L1:'5×5ft', L2:'5×5ft', L3:'5×5ft', L4:'5×5ft', XL1:'5×10ft', XL2:'5×10ft' };
+      const UNIT_DEFAULT_RENTS = { S1:15, S2:15, S3:15, S4:15, S5:15, S6:15, S7:15, S8:15, S9:15, S10:15, M1:25, M2:25, M3:25, M4:25, M5:25, M6:25, L1:35, L2:35, L3:35, L4:35, XL1:60, XL2:60 };
+      const UNIT_SIZES_DISPLAY = { S1:'Small 3×3ft', S2:'Small 3×3ft', S3:'Small 3×3ft', S4:'Small 3×3ft', S5:'Small 3×3ft', S6:'Small 3×3ft', S7:'Small 3×3ft', S8:'Small 3×3ft', S9:'Small 3×3ft', S10:'Small 3×3ft', M1:'Medium 4×4ft', M2:'Medium 4×4ft', M3:'Medium 4×4ft', M4:'Medium 4×4ft', M5:'Medium 4×4ft', M6:'Medium 4×4ft', L1:'Large 5×5ft', L2:'Large 5×5ft', L3:'Large 5×5ft', L4:'Large 5×5ft', XL1:'X-Large 5×10ft', XL2:'X-Large 5×10ft' };
+
+      // ─── Sample account data ───
+      const DEFAULT_ACCOUNTS = [
+        { name: 'Alice Johnson', reg: 'AB12 CDE', bay: 'Bay 8', startDate: '2026-01-15', status: 'Active' },
+        { name: 'Bob Williams', reg: 'FG34 HIJ', bay: 'Bay 5', startDate: '2025-11-01', status: 'Active' },
+        { name: 'Carol Davis', reg: 'KL56 MNO', bay: 'Bay 3', startDate: '2026-03-10', status: 'Active' },
+        { name: 'David Brown', reg: 'PQ78 RST', bay: 'Bay 12', startDate: '2026-05-01', status: 'Active' },
+        { name: 'Eve Martin', reg: 'UV90 WXY', bay: 'Bay 15', startDate: '2025-08-20', status: 'Inactive' }
+      ];
+
+      // ─── Sample storage unit data ───
+      function getDefaultStorageData() {
+        const data = {};
+        UNIT_NAMES.forEach(name => {
+          data[name] = { status: 'available' };
+        });
+        // Set some defaults for occupied units to match initial view
+        data.S1 = { status: 'occupied', tenant: 'Mike Smith', startDate: '2025-11-01', contractMonths: 12, phone: '07123456789', rent: 15 };
+        data.S4 = { status: 'occupied', tenant: 'Jenny Clark', startDate: '2026-02-15', contractMonths: 6, phone: '07234567890', rent: 15 };
+        data.S5 = { status: 'occupied', tenant: 'Tom Baker', startDate: '2026-01-10', contractMonths: 12, phone: '07345678901', rent: 15 };
+        data.S7 = { status: 'occupied', tenant: 'Lisa Ray', startDate: '2025-09-05', contractMonths: 12, phone: '07456789012', rent: 15 };
+        data.S9 = { status: 'booked', tenant: '', startDate: '', contractMonths: 0, phone: '', rent: 15 };
+        data.M1 = { status: 'occupied', tenant: 'Paul Wright', startDate: '2025-06-01', contractMonths: 24, phone: '07567890123', rent: 25 };
+        data.M2 = { status: 'occupied', tenant: 'Sarah King', startDate: '2026-03-20', contractMonths: 12, phone: '07678901234', rent: 25 };
+        data.M4 = { status: 'booked', tenant: '', startDate: '', contractMonths: 0, phone: '', rent: 25 };
+        data.M6 = { status: 'occupied', tenant: 'Dan Green', startDate: '2025-10-15', contractMonths: 12, phone: '07789012345', rent: 25 };
+        data.L2 = { status: 'occupied', tenant: 'Emma White', startDate: '2026-01-05', contractMonths: 6, phone: '07890123456', rent: 35 };
+        data.L3 = { status: 'occupied', tenant: 'James Black', startDate: '2025-07-01', contractMonths: 18, phone: '07901234567', rent: 35 };
+        data.XL1 = { status: 'occupied', tenant: 'Nina Grey', startDate: '2025-04-01', contractMonths: 24, phone: '07012345678', rent: 60 };
+        return data;
+      }
+
+      // ─── localStorage helpers ───
+      function loadData(key, fallback) {
+        try {
+          const raw = localStorage.getItem('ccp_' + key);
+          return raw ? JSON.parse(raw) : fallback;
+        } catch(e) { return fallback; }
+      }
+      function saveData(key, value) {
+        localStorage.setItem('ccp_' + key, JSON.stringify(value));
+      }
+
+      // Application state
+      let storageData = loadData('storageUnits', getDefaultStorageData());
+      let accounts = loadData('accounts', DEFAULT_ACCOUNTS);
+      let rates = loadData('rates', { daily:12, monthly:280, storageSmall:15, storageMedium:25, storageLarge:35, storageXL:60 });
+      let hours = loadData('hours', { monFri:'6:00 AM – 10:00 PM', sat:'7:00 AM – 10:00 PM', sun:'8:00 AM – 8:00 PM', storage:'24/7 · Keycode Entry', monthly:'24/7 · ANPR Access' });
+      let planImage = loadData('planImage', null);
+
+      // ─── Toast ───
+      let toastTimer = null;
+      function showToast(msg) {
+        adminToast.textContent = msg;
+        adminToast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => adminToast.classList.remove('show'), 2500);
+      }
+
+      // ─── Apply Rates to Public Site ───
+      function applyRatesToSite() {
+        document.getElementById('priceSmall').textContent = '£' + rates.storageSmall + '/week';
+        document.getElementById('priceMedium').textContent = '£' + rates.storageMedium + '/week';
+        document.getElementById('priceLarge').textContent = '£' + rates.storageLarge + '/week';
+        document.getElementById('priceXL').textContent = '£' + rates.storageXL + '/week';
+        document.getElementById('priceDailyDisplay').textContent = '£' + rates.daily + '/day';
+        document.getElementById('priceMonthlyDisplay').textContent = '£' + rates.monthly + '/month';
+        document.getElementById('promoMonthlyRate').textContent = '£' + rates.monthly;
+        // Update admin inputs
+        document.getElementById('rateDaily').value = rates.daily;
+        document.getElementById('rateMonthly').value = rates.monthly;
+        document.getElementById('rateStorageSmall').value = rates.storageSmall;
+        document.getElementById('rateStorageMedium').value = rates.storageMedium;
+        document.getElementById('rateStorageLarge').value = rates.storageLarge;
+        document.getElementById('rateStorageXL').value = rates.storageXL;
+      }
+
+      // ─── Apply Hours to Public Site ───
+      function applyHoursToSite() {
+        document.querySelector('#hoursRowMonFri td:last-child').textContent = hours.monFri;
+        document.querySelector('#hoursRowSat td:last-child').textContent = hours.sat;
+        document.querySelector('#hoursRowSun td:last-child').textContent = hours.sun;
+        document.querySelector('#hoursRowStorage td:last-child').textContent = hours.storage;
+        document.querySelector('#hoursRowMonthly td:last-child').textContent = hours.monthly;
+        // Update admin inputs
+        document.getElementById('hoursMonFri').value = hours.monFri;
+        document.getElementById('hoursSat').value = hours.sat;
+        document.getElementById('hoursSun').value = hours.sun;
+        document.getElementById('hoursStorage').value = hours.storage;
+        document.getElementById('hoursMonthly').value = hours.monthly;
+      }
+
+      // ─── Update Floor Plan Grid ───
+      function updateFloorPlan() {
+        const grid = document.getElementById('fpGrid');
+        const units = grid.querySelectorAll('.fp-unit');
+        let available = 0, occupied = 0, booked = 0;
+        units.forEach(el => {
+          const name = el.getAttribute('data-unit');
+          const info = storageData[name] || { status:'available' };
+          // Remove existing status classes
+          el.classList.remove('available','occupied','booked');
+          el.classList.add(info.status);
+          if (info.status === 'available') available++;
+          else if (info.status === 'occupied') occupied++;
+          else if (info.status === 'booked') booked++;
+        });
+        document.getElementById('fpDimensions').textContent = 'Total: 22 units · ' + available + ' Available · ' + occupied + ' Occupied · ' + booked + ' Booked';
+        document.getElementById('storageOccupiedCount').textContent = occupied + '/22';
+        document.getElementById('storageOccupiedPct').textContent = '▲ ' + Math.round((occupied/22)*100) + '% occupied';
+      }
+
+      // ─── Render Accounts Table ───
+      function renderAccounts() {
+        const tbody = document.getElementById('accountsBody');
+        tbody.innerHTML = '';
+        accounts.forEach((acc, idx) => {
+          const tr = document.createElement('tr');
+          const statusClass = acc.status === 'Active' ? 'status-badge active' : 'status-badge inactive';
+          tr.innerHTML = `
+            <td>${acc.name}</td>
+            <td>${acc.reg}</td>
+            <td>${acc.bay}</td>
+            <td>${acc.startDate}</td>
+            <td><span class="${statusClass}">${acc.status}</span></td>
+            <td><button class="admin-btn-sm danger" data-index="${idx}">Remove</button></td>
+          `;
+          tbody.appendChild(tr);
+        });
+        // Attach remove handlers
+        tbody.querySelectorAll('[data-index]').forEach(btn => {
+          btn.addEventListener('click', function() {
+            const idx = parseInt(this.getAttribute('data-index'));
+            accounts.splice(idx, 1);
+            saveData('accounts', accounts);
+            renderAccounts();
+            showToast('Account removed');
+          });
+        });
+      }
+
+      // ─── Render Admin Storage Units Grid ───
+      function renderAdminUnits() {
+        const grid = document.getElementById('adminUnitsGrid');
+        grid.innerHTML = '';
+        UNIT_NAMES.forEach(name => {
+          const info = storageData[name] || { status:'available', rent: UNIT_DEFAULT_RENTS[name] || 0 };
+          const card = document.createElement('div');
+          card.className = 'admin-unit-card';
+          card.innerHTML = `
+            <h4><span>${name}</span><span style="font-size:11px;font-weight:600">${UNIT_SIZES_DISPLAY[name]}</span></h4>
+            <select class="unit-status-select" data-unit="${name}">
+              <option value="available" ${info.status==='available'?'selected':''}>Available</option>
+              <option value="occupied" ${info.status==='occupied'?'selected':''}>Occupied</option>
+              <option value="booked" ${info.status==='booked'?'selected':''}>Booked</option>
+            </select>
+            <input type="text" placeholder="Tenant name" data-unit="${name}" data-field="tenant" value="${info.tenant||''}" />
+            <input type="date" data-unit="${name}" data-field="startDate" value="${info.startDate||''}" />
+            <input type="number" placeholder="Contract months" data-unit="${name}" data-field="contractMonths" value="${info.contractMonths||0}" min="0" />
+            <input type="text" placeholder="Phone" data-unit="${name}" data-field="phone" value="${info.phone||''}" />
+            <input type="number" placeholder="Monthly rent £" data-unit="${name}" data-field="rent" value="${info.rent||0}" min="0" step="5" />
+          `;
+          grid.appendChild(card);
+        });
+        // Auto-save on changes
+        grid.querySelectorAll('select, input').forEach(el => {
+          el.addEventListener('change', saveAdminUnitsFromGrid);
+          el.addEventListener('input', saveAdminUnitsFromGrid);
+        });
+      }
+
+      let saveUnitsDebounce = null;
+      function saveAdminUnitsFromGrid() {
+        clearTimeout(saveUnitsDebounce);
+        saveUnitsDebounce = setTimeout(() => {
+          UNIT_NAMES.forEach(name => {
+            const statusEl = document.querySelector(`.unit-status-select[data-unit="${name}"]`);
+            const tenantEl = document.querySelector(`input[data-unit="${name}"][data-field="tenant"]`);
+            const startEl = document.querySelector(`input[data-unit="${name}"][data-field="startDate"]`);
+            const contractEl = document.querySelector(`input[data-unit="${name}"][data-field="contractMonths"]`);
+            const phoneEl = document.querySelector(`input[data-unit="${name}"][data-field="phone"]`);
+            const rentEl = document.querySelector(`input[data-unit="${name}"][data-field="rent"]`);
+            if (!statusEl) return;
+            const status = statusEl.value;
+            const data = { status };
+            if (status === 'occupied' || status === 'booked') {
+              data.tenant = tenantEl ? tenantEl.value : '';
+              data.startDate = startEl ? startEl.value : '';
+              data.contractMonths = parseInt(contractEl ? contractEl.value : 0) || 0;
+              data.phone = phoneEl ? phoneEl.value : '';
+              data.rent = parseFloat(rentEl ? rentEl.value : 0) || 0;
+            }
+            storageData[name] = data;
+          });
+          saveData('storageUnits', storageData);
+          updateFloorPlan();
+          renderHotspots();
+        }, 300);
+      }
+
+      // ─── Render Hotspots on plan image ───
+      function renderHotspots() {
+        const container = document.getElementById('planContainer');
+        if (!container) return;
+        // Remove existing hotspots
+        container.querySelectorAll('.plan-hotspot').forEach(el => el.remove());
+        if (!planImage) return;
+        // Position hotspots based on unit name (predefined positions)
+        const positions = getHotspotPositions();
+        UNIT_NAMES.forEach(name => {
+          const info = storageData[name] || { status:'available' };
+          const pos = positions[name];
+          if (!pos) return;
+          const hotspot = document.createElement('div');
+          hotspot.className = 'plan-hotspot ' + (info.status || 'available');
+          hotspot.style.left = pos.x + '%';
+          hotspot.style.top = pos.y + '%';
+          hotspot.textContent = name;
+          hotspot.setAttribute('data-unit', name);
+          hotspot.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const unitName = this.getAttribute('data-unit');
+            const info = storageData[unitName] || { status:'available' };
+            openUnitModal(unitName, info);
+          });
+          container.appendChild(hotspot);
+        });
+      }
+
+      function getHotspotPositions() {
+        // Predefined hotspot positions as percentages relative to plan image
+        return {
+          S1:{x:10,y:10}, S2:{x:22,y:10}, S3:{x:34,y:10}, S4:{x:46,y:10}, S5:{x:58,y:10},
+          S6:{x:10,y:24}, S7:{x:22,y:24}, S8:{x:34,y:24}, S9:{x:46,y:24}, S10:{x:58,y:24},
+          M1:{x:10,y:40}, M2:{x:22,y:40}, M3:{x:34,y:40}, M4:{x:46,y:40}, M5:{x:58,y:40}, M6:{x:70,y:40},
+          L1:{x:10,y:56}, L2:{x:22,y:56}, L3:{x:34,y:56}, L4:{x:46,y:56},
+          XL1:{x:60,y:56}, XL2:{x:75,y:56}
+        };
+      }
+
+      // ─── Unit Modal (public) ───
+      let currentModalUnit = null;
+
+      function openUnitModal(unitName, info) {
+        currentModalUnit = unitName;
+        document.getElementById('modalUnitNum').textContent = unitName;
+        document.getElementById('modalUnitSize').textContent = UNIT_SIZES[unitName] || '';
+        const statusEl = document.getElementById('modalStatus');
+        statusEl.textContent = info.status.charAt(0).toUpperCase() + info.status.slice(1);
+        statusEl.className = 'modal-status ' + (info.status || 'available');
+
+        const details = document.getElementById('modalDetails');
+        let html = '<div class="detail-row"><span class="label">Status</span><span class="value">' + (info.status || 'Available') + '</span></div>';
+        html += '<div class="detail-row"><span class="label">Size</span><span class="value">' + (UNIT_SIZES[unitName] || '') + '</span></div>';
+        if (info.status === 'occupied') {
+          html += '<div class="detail-row"><span class="label">Tenant</span><span class="value">' + (info.tenant || '—') + '</span></div>';
+          html += '<div class="detail-row"><span class="label">Start Date</span><span class="value">' + (info.startDate || '—') + '</span></div>';
+          // Calculate duration
+          let duration = '—';
+          if (info.startDate) {
+            try {
+              const start = new Date(info.startDate);
+              const now = new Date();
+              const months = (now.getFullYear() - start.getFullYear()) * 12 + (now.getMonth() - start.getMonth());
+              const days = Math.floor((now - new Date(start.getFullYear(), start.getMonth() + months, start.getDate())) / (1000*60*60*24));
+              const adjMonths = days < 0 ? months - 1 : months;
+              const adjDays = days < 0 ? days + 30 : days;
+              if (adjMonths > 0 || adjDays > 0) {
+                const mStr = adjMonths > 0 ? adjMonths + ' month' + (adjMonths>1?'s':'') : '';
+                const dStr = adjDays > 0 ? adjDays + ' day' + (adjDays>1?'s':'') : '';
+                duration = [mStr, dStr].filter(Boolean).join(', ') || 'Less than a day';
+              } else {
+                duration = 'Less than a day';
+              }
+            } catch(e) {}
+          }
+          html += '<div class="detail-row"><span class="label">Current Duration</span><span class="value">' + duration + '</span></div>';
+          html += '<div class="detail-row"><span class="label">Phone</span><span class="value">' + (info.phone || '—') + '</span></div>';
+          html += '<div class="detail-row"><span class="label">Monthly Rent</span><span class="value">£' + (info.rent || 0) + '</span></div>';
+          // Show release button, hide edit
+          document.getElementById('modalReleaseBtn').style.display = 'block';
+        } else if (info.status === 'booked') {
+          html += '<div class="detail-row"><span class="label">Notes</span><span class="value">Reserved — awaiting contract</span></div>';
+          document.getElementById('modalReleaseBtn').style.display = 'block';
+        } else {
+          html += '<div class="detail-row"><span class="label">Notes</span><span class="value">Ready to rent</span></div>';
+          document.getElementById('modalReleaseBtn').style.display = 'none';
+        }
+        details.innerHTML = html;
+        unitModal.classList.add('open');
+      }
+
+      function closeUnitModal() {
+        unitModal.classList.remove('open');
+        currentModalUnit = null;
+      }
+
+      // ─── Open edit unit modal ───
+      function openEditUnitModal(unitName) {
+        const info = storageData[unitName] || { status:'available' };
+        document.getElementById('editUnitTitle').textContent = 'Edit Unit ' + unitName;
+        document.getElementById('editUnitStatus').value = info.status || 'available';
+
+        const showFields = info.status === 'occupied';
+        document.getElementById('editUnitTenantField').style.display = showFields ? 'block' : 'none';
+        document.getElementById('editUnitStartField').style.display = showFields ? 'block' : 'none';
+        document.getElementById('editUnitContractField').style.display = showFields ? 'block' : 'none';
+        document.getElementById('editUnitPhoneField').style.display = showFields ? 'block' : 'none';
+        document.getElementById('editUnitRentField').style.display = (info.status === 'occupied' || info.status === 'booked') ? 'block' : 'none';
+
+        document.getElementById('editUnitTenant').value = info.tenant || '';
+        document.getElementById('editUnitStart').value = info.startDate || '';
+        document.getElementById('editUnitContract').value = info.contractMonths || 0;
+        document.getElementById('editUnitPhone').value = info.phone || '';
+        document.getElementById('editUnitRent').value = info.rent || 0;
+        editUnitModal.classList.add('open');
+      }
+
+      function closeEditUnitModal() {
+        editUnitModal.classList.remove('open');
+      }
+
+      // ─── Plan image display ───
+      function displayPlanImage() {
+        const container = document.getElementById('planContainer');
+        const area = document.getElementById('planDisplayArea');
+        if (planImage) {
+          area.style.display = 'block';
+          container.innerHTML = '<img src="' + planImage + '" alt="Car Park Plan" style="width:100%" />';
+          renderHotspots();
+        } else {
+          area.style.display = 'none';
+        }
+      }
+
+      // ─── Initialize all ───
+      function init() {
+        applyRatesToSite();
+        applyHoursToSite();
+        updateFloorPlan();
+        renderAccounts();
+        renderAdminUnits();
+        displayPlanImage();
+        renderHotspots();
+      }
+
+      // ─── Admin Panel Toggle ───
+      let isAdminOpen = false;
+      let isAdminLoggedIn = false;
+
+      function openAdmin() {
+        isAdminOpen = true;
+        adminPanel.classList.add('open');
+        adminOverlay.classList.add('open');
+        if (isAdminLoggedIn) {
+          adminLogin.style.display = 'none';
+          adminDash.style.display = 'block';
+        } else {
+          adminLogin.style.display = 'block';
+          adminDash.style.display = 'none';
+          adminPwd.focus();
+        }
+        document.body.style.overflow = 'hidden';
+        document.body.style.paddingTop = '0';
+      }
+
+      function closeAdmin() {
+        isAdminOpen = false;
+        adminPanel.classList.remove('open');
+        adminOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+        document.body.style.paddingTop = '84px';
+      }
+
+      adminToggle.addEventListener('click', openAdmin);
+
+      adminClose.addEventListener('click', closeAdmin);
+      adminOverlay.addEventListener('click', closeAdmin);
+
+      // ─── Admin Login ───
+      adminLoginBtn.addEventListener('click', function() {
+        const pwd = adminPwd.value.trim();
+        if (pwd === ADMIN_PASSWORD) {
+          isAdminLoggedIn = true;
+          adminLogin.style.display = 'none';
+          adminDash.style.display = 'block';
+          adminLoginErr.style.display = 'none';
+          adminPwd.value = '';
+          init(); // re-init with saved data
+          showToast('Admin panel unlocked');
+        } else {
+          adminLoginErr.style.display = 'block';
+        }
+      });
+
+      adminPwd.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') adminLoginBtn.click();
+      });
+
+      // ─── Tab Switching ───
+      document.querySelectorAll('.admin-tabs button').forEach(btn => {
+        btn.addEventListener('click', function() {
+          document.querySelectorAll('.admin-tabs button').forEach(b => b.classList.remove('active'));
+          document.querySelectorAll('.admin-tab-content').forEach(c => c.classList.remove('active'));
+          this.classList.add('active');
+          document.getElementById(this.getAttribute('data-tab')).classList.add('active');
+        });
+      });
+
+      // ─── Save Rates ───
+      document.getElementById('saveRates').addEventListener('click', function() {
+        rates.daily = parseFloat(document.getElementById('rateDaily').value) || 0;
+        rates.monthly = parseFloat(document.getElementById('rateMonthly').value) || 0;
+        rates.storageSmall = parseFloat(document.getElementById('rateStorageSmall').value) || 0;
+        rates.storageMedium = parseFloat(document.getElementById('rateStorageMedium').value) || 0;
+        rates.storageLarge = parseFloat(document.getElementById('rateStorageLarge').value) || 0;
+        rates.storageXL = parseFloat(document.getElementById('rateStorageXL').value) || 0;
+        saveData('rates', rates);
+        applyRatesToSite();
+        const msg = document.getElementById('ratesSavedMsg');
+        msg.classList.add('show');
+        setTimeout(() => msg.classList.remove('show'), 2000);
+        showToast('Rates saved');
+      });
+
+      // ─── Save Hours ───
+      document.getElementById('saveHours').addEventListener('click', function() {
+        hours.monFri = document.getElementById('hoursMonFri').value;
+        hours.sat = document.getElementById('hoursSat').value;
+        hours.sun = document.getElementById('hoursSun').value;
+        hours.storage = document.getElementById('hoursStorage').value;
+        hours.monthly = document.getElementById('hoursMonthly').value;
+        saveData('hours', hours);
+        applyHoursToSite();
+        const msg = document.getElementById('hoursSavedMsg');
+        msg.classList.add('show');
+        setTimeout(() => msg.classList.remove('show'), 2000);
+        showToast('Opening hours saved');
+      });
+
+      // ─── Add Account ───
+      document.getElementById('addAccountBtn').addEventListener('click', function() {
+        const name = document.getElementById('newAccName').value.trim();
+        const reg = document.getElementById('newAccReg').value.trim();
+        const bay = document.getElementById('newAccBay').value.trim();
+        const date = document.getElementById('newAccDate').value;
+        if (!name || !reg || !bay || !date) {
+          showToast('Please fill in all account fields');
+          return;
+        }
+        accounts.push({ name, reg, bay, startDate: date, status: 'Active' });
+        saveData('accounts', accounts);
+        renderAccounts();
+        document.getElementById('newAccName').value = '';
+        document.getElementById('newAccReg').value = '';
+        document.getElementById('newAccBay').value = '';
+        document.getElementById('newAccDate').value = '';
+        showToast('Account added: ' + name);
+      });
+
+      // ─── Plan Upload ───
+      const planUploadArea = document.getElementById('planUploadArea');
+      const planFileInput = document.getElementById('planFileInput');
+
+      planUploadArea.addEventListener('click', () => planFileInput.click());
+
+      planUploadArea.addEventListener('dragover', function(e) {
+        e.preventDefault();
+        this.classList.add('dragover');
+      });
+      planUploadArea.addEventListener('dragleave', function() {
+        this.classList.remove('dragover');
+      });
+      planUploadArea.addEventListener('drop', function(e) {
+        e.preventDefault();
+        this.classList.remove('dragover');
+        if (e.dataTransfer.files.length) handlePlanFile(e.dataTransfer.files[0]);
+      });
+
+      planFileInput.addEventListener('change', function() {
+        if (this.files.length) handlePlanFile(this.files[0]);
+      });
+
+      function handlePlanFile(file) {
+        if (!file.type.startsWith('image/')) {
+          showToast('Please upload an image file');
+          return;
+        }
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          planImage = e.target.result;
+          saveData('planImage', planImage);
+          displayPlanImage();
+          planUploadArea.querySelector('p').textContent = '✅ Uploaded: ' + file.name;
+          showToast('Floor plan uploaded');
+        };
+        reader.readAsDataURL(file);
+      }
+
+      document.getElementById('removePlanBtn').addEventListener('click', function() {
+        planImage = null;
+        saveData('planImage', null);
+        displayPlanImage();
+        document.getElementById('planDisplayArea').style.display = 'none';
+        planUploadArea.querySelector('p').innerHTML = 'Click or drag an image to upload your car park floor plan';
+        showToast('Plan image removed');
+      });
+
+      // ─── Unit Modal Controls ───
+      document.getElementById('modalBackdrop').addEventListener('click', closeUnitModal);
+      document.getElementById('modalClose').addEventListener('click', closeUnitModal);
+
+      // Click FP units to open modal
+      document.querySelectorAll('.fp-unit').forEach(el => {
+        el.addEventListener('click', function() {
+          const name = this.getAttribute('data-unit');
+          if (!name) return;
+          const info = storageData[name] || { status:'available' };
+          openUnitModal(name, info);
+        });
+      });
+
+      // Modal Edit button
+      document.getElementById('modalEditBtn').addEventListener('click', function() {
+        if (!currentModalUnit) return;
+        closeUnitModal();
+        openEditUnitModal(currentModalUnit);
+      });
+
+      // Modal Release button
+      document.getElementById('modalReleaseBtn').addEventListener('click', function() {
+        if (!currentModalUnit) return;
+        const name = currentModalUnit;
+        storageData[name] = { status:'available' };
+        saveData('storageUnits', storageData);
+        updateFloorPlan();
+        renderAdminUnits();
+        renderHotspots();
+        closeUnitModal();
+        showToast('Unit ' + name + ' released — now available');
+      });
+
+      // ─── Edit Unit Modal Controls ───
+      document.getElementById('editUnitBackdrop').addEventListener('click', closeEditUnitModal);
+      document.getElementById('editUnitClose').addEventListener('click', closeEditUnitModal);
+
+      // When status changes in edit modal, show/hide fields
+      document.getElementById('editUnitStatus').addEventListener('change', function() {
+        const show = this.value === 'occupied';
+        document.getElementById('editUnitTenantField').style.display = show ? 'block' : 'none';
+        document.getElementById('editUnitStartField').style.display = show ? 'block' : 'none';
+        document.getElementById('editUnitContractField').style.display = show ? 'block' : 'none';
+        document.getElementById('editUnitPhoneField').style.display = show ? 'block' : 'none';
+        document.getElementById('editUnitRentField').style.display = (this.value === 'occupied' || this.value === 'booked') ? 'block' : 'none';
+      });
+
+      // Save edit unit
+      document.getElementById('editUnitSave').addEventListener('click', function() {
+        const title = document.getElementById('editUnitTitle').textContent;
+        const unitName = title.replace('Edit Unit ', '');
+        const status = document.getElementById('editUnitStatus').value;
+        const data = { status };
+        if (status === 'occupied') {
+          data.tenant = document.getElementById('editUnitTenant').value;
+          data.startDate = document.getElementById('editUnitStart').value;
+          data.contractMonths = parseInt(document.getElementById('editUnitContract').value) || 0;
+          data.phone = document.getElementById('editUnitPhone').value;
+          data.rent = parseFloat(document.getElementById('editUnitRent').value) || 0;
+        } else if (status === 'booked') {
+          data.rent = parseFloat(document.getElementById('editUnitRent').value) || 0;
+          data.tenant = document.getElementById('editUnitTenant').value;
+        }
+        storageData[unitName] = data;
+        saveData('storageUnits', storageData);
+        updateFloorPlan();
+        renderAdminUnits();
+        renderHotspots();
+        closeEditUnitModal();
+        showToast('Unit ' + unitName + ' updated');
+      });
+
+      // ─── URL hash admin trigger ───
+      function checkAdminHash() {
+        if (window.location.hash === '#admin') {
+          openAdmin();
+        }
+      }
+      window.addEventListener('hashchange', checkAdminHash);
+
+      // ─── Init on load ───
+      init();
+
+      // ─── Double-click gear icon in footer ───
+      document.querySelector('footer .f-inner > div:last-child')?.addEventListener('dblclick', openAdmin);
+
+      // Open admin if hash already set
+      checkAdminHash();
+
+    })();
   </script>
 </body>
 </html>
