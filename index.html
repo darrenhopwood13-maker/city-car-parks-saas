@@ -3,15 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>City Car Parks — SaaS Platform for Smart Parking & Storage</title>
+  <title>City Car Parks &amp; Storage — Hoxton's Parking &amp; Storage Since 1998</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
-    /* ── Reset & Base ── */
+    /* ════════════════════════════════════════════════
+       RESET & BASE
+       ════════════════════════════════════════════════ */
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
     html{scroll-behavior:smooth}
-    body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#FFCC00;color:#000;overflow-x:hidden;font-weight:700;position:relative}
+    body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#FFCC00;color:#000;overflow-x:hidden;font-weight:700;position:relative;padding-top:72px}
     a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
 
     /* ── B&W Chequerboard Perimeter Border ── */
     body::before{content:'';position:fixed;inset:0;border:14px solid;border-image:repeating-conic-gradient(#000 0% 25%,#fff 0% 50%) 14;pointer-events:none;z-index:9999}
@@ -21,513 +24,782 @@
     ::-webkit-scrollbar-track{background:#FFCC00}
     ::-webkit-scrollbar-thumb{background:#000;border-radius:3px}
 
-    /* ── Nav ── */
-    nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:#FFCC00;border-bottom:3px solid #000}
-    nav .inner{max-width:1400px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:72px}
-    nav .logo{display:flex;align-items:center;gap:10px;font-weight:900;font-size:18px;letter-spacing:-0.5px;color:#000}
-    nav .logo .brand-dot{width:10px;height:10px;background:#000;border-radius:50%}
-    nav .logo span{color:#000}
-    nav .logo small{font-weight:600;color:#000;font-size:12px}
-    .nav-links{display:flex;align-items:center;gap:4px}
-    .nav-links a{padding:8px 18px;border-radius:10px;font-size:14px;font-weight:700;color:#000;transition:.25s}
-    .nav-links a:hover{background:rgba(0,0,0,0.1)}
-    .nav-links .btn-nav{background:#000;color:#FFCC00!important;padding:10px 22px;font-weight:800;border:2px solid #000}
-    .nav-links .btn-nav:hover{transform:translateY(-1px);background:#fff;color:#000!important;border-color:#000}
-
-    /* ── Sections ── */
-    section{padding:100px 32px;max-width:1400px;margin:0 auto}
-    @media(max-width:768px){section{padding:60px 20px}}
+    /* ── Utilities ── */
+    .container{max-width:1280px;margin:0 auto;padding:0 24px}
+    @media(max-width:768px){.container{padding:0 16px}}
     .tag{display:inline-flex;align-items:center;gap:8px;background:#fff;color:#000;font-size:12px;font-weight:800;padding:6px 16px;border-radius:100px;border:2px solid #000;margin-bottom:16px;letter-spacing:0.3px;text-transform:uppercase}
     .tag::before{content:'';width:6px;height:6px;background:#000;border-radius:50%;animation:pulse-dot 2s infinite}
     @keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:0.3}}
+    .section-title{font-size:42px;font-weight:900;letter-spacing:-0.03em;line-height:1.15;margin-bottom:10px;color:#000}
+    @media(max-width:768px){.section-title{font-size:28px}}
+    .section-sub{color:#000;font-size:16px;font-weight:600;max-width:600px;line-height:1.7;margin-bottom:40px}
+    .btn-black{background:#000;color:#FFCC00;border:3px solid #000;padding:14px 28px;font-size:15px;font-weight:800;border-radius:12px;cursor:pointer;transition:.3s;display:inline-flex;align-items:center;gap:8px;box-shadow:4px 4px 0 rgba(0,0,0,0.2)}
+    .btn-black:hover{transform:translateY(-3px);background:#fff;color:#000;border-color:#000}
+    .btn-outline{background:#FFCC00;color:#000;border:3px solid #000;padding:14px 28px;font-size:15px;font-weight:800;border-radius:12px;cursor:pointer;transition:.3s;display:inline-flex;align-items:center;gap:8px}
+    .btn-outline:hover{background:#fff;border-color:#000;transform:translateY(-2px)}
+    .btn-white{background:#fff;color:#000;border:3px solid #000;padding:14px 28px;font-size:15px;font-weight:800;border-radius:12px;cursor:pointer;transition:.3s;display:inline-flex;align-items:center;gap:8px}
+    .btn-white:hover{background:#000;color:#FFCC00;border-color:#000;transform:translateY(-2px)}
+    section{padding:80px 0}
+    @media(max-width:768px){section{padding:50px 0}}
 
-    h2{font-size:44px;font-weight:900;letter-spacing:-0.03em;line-height:1.15;margin-bottom:14px;color:#000}
-    @media(max-width:768px){h2{font-size:30px}}
-    h2+p{color:#000;font-size:17px;font-weight:700;max-width:580px;line-height:1.7;margin-bottom:48px}
+    /* ════════════════════════════════════════════════
+       NAV
+       ════════════════════════════════════════════════ */
+    nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:#FFCC00;border-bottom:3px solid #000;height:72px}
+    nav .inner{max-width:1280px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:72px}
+    nav .logo{font-weight:900;font-size:20px;letter-spacing:-0.5px;color:#000;display:flex;align-items:center;gap:10px}
+    nav .logo .dot{width:12px;height:12px;background:#000;border-radius:50%;flex-shrink:0}
+    .nav-links{display:flex;align-items:center;gap:4px}
+    .nav-links a{padding:8px 16px;border-radius:10px;font-size:13px;font-weight:700;color:#000;transition:.25s;white-space:nowrap}
+    .nav-links a:hover{background:rgba(0,0,0,0.1)}
+    .nav-links .btn-nav{background:#000;color:#FFCC00!important;padding:10px 20px;font-weight:800;border:2px solid #000}
+    .nav-links .btn-nav:hover{background:#fff;color:#000!important;border-color:#000;transform:translateY(-1px)}
+    .hamburger{display:none;flex-direction:column;cursor:pointer;gap:5px;background:none;border:none;padding:8px}
+    .hamburger span{width:26px;height:3px;background:#000;border-radius:2px;transition:.3s}
+    @media(max-width:900px){
+      .nav-links{display:none;position:absolute;top:72px;left:0;right:0;background:#FFCC00;flex-direction:column;padding:16px 24px 24px;border-bottom:3px solid #000;gap:8px;z-index:999}
+      .nav-links.open{display:flex}
+      .hamburger{display:flex}
+    }
 
-    /* ── Hero ── */
-    .hero{padding-top:172px;padding-bottom:100px;max-width:100%;position:relative;overflow:hidden}
-    .hero .grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;position:relative;z-index:2}
-    @media(max-width:1024px){.hero .grid{grid-template-columns:1fr;gap:48px}}
-    .hero h1{font-size:60px;font-weight:900;line-height:1.05;letter-spacing:-0.03em;margin-bottom:20px;color:#000}
-    @media(max-width:768px){.hero h1{font-size:38px}}
-    .hero h1 .highlight{color:#000}
-    .hero p{font-size:18px;color:#000;font-weight:700;line-height:1.8;max-width:520px;margin-bottom:36px}
-    .hero .btn-group{display:flex;gap:14px;flex-wrap:wrap}
-    .hero .btn-primary{background:#000;color:#FFCC00;border:3px solid #000;padding:16px 32px;font-size:16px;font-weight:800;border-radius:14px;cursor:pointer;transition:.3s;display:inline-flex;align-items:center;gap:8px;box-shadow:4px 4px 0 rgba(0,0,0,0.3)}
-    .hero .btn-primary:hover{transform:translateY(-3px);background:#fff;color:#000;border-color:#000}
-    .hero .btn-secondary{background:#FFCC00;color:#000;border:3px solid #000;padding:16px 32px;font-size:16px;font-weight:800;border-radius:14px;cursor:pointer;transition:.3s;display:inline-flex;align-items:center;gap:8px}
-    .hero .btn-secondary:hover{background:#fff;border-color:#000}
-    .hero .stats{display:flex;gap:48px;margin-top:48px;padding-top:32px;border-top:3px solid #000}
-    @media(max-width:768px){.hero .stats{gap:24px;flex-wrap:wrap}}
-    .hero .stats .num{font-size:36px;font-weight:900;color:#000}
-    .hero .stats .lbl{font-size:13px;color:#000;font-weight:700;margin-top:4px}
+    /* ════════════════════════════════════════════════
+       HERO / BOOKING SEARCH
+       ════════════════════════════════════════════════ */
+    .hero{padding:100px 0 80px}
+    @media(max-width:768px){.hero{padding:60px 0 40px}}
+    .hero h1{font-size:56px;font-weight:900;line-height:1.05;letter-spacing:-0.03em;margin-bottom:16px;color:#000}
+    @media(max-width:768px){.hero h1{font-size:32px}}
+    .hero .tagline{font-size:18px;color:#000;font-weight:700;line-height:1.7;margin-bottom:32px;max-width:600px}
+    .search-card{background:#fff;border:3px solid #000;border-radius:20px;padding:28px 32px;box-shadow:8px 8px 0 rgba(0,0,0,0.15);margin-bottom:20px}
+    .search-row{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-end}
+    .search-row .field{flex:1;min-width:160px}
+    .search-row .field label{display:block;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;color:#000}
+    .search-row .field input,.search-row .field select{width:100%;padding:12px 14px;border:2px solid #000;border-radius:10px;font-size:14px;font-weight:700;background:#FFCC00;color:#000;font-family:'Inter',sans-serif;outline:none}
+    .search-row .field input:focus,.search-row .field select:focus{border-color:#000;box-shadow:0 0 0 3px rgba(0,0,0,0.15)}
+    .partner-badges{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:12px;padding-top:12px;border-top:2px solid #000;font-size:13px;font-weight:600;color:#000}
+    .partner-badges a{font-weight:800;text-decoration:underline;transition:.2s}
+    .partner-badges a:hover{color:#000;opacity:0.7}
+    .partner-badges .badge{display:inline-flex;align-items:center;gap:6px;background:#fff;padding:6px 14px;border-radius:8px;border:2px solid #000;font-weight:800;font-size:12px}
 
-    /* ── Hero Visual (Dashboard Mock) ── */
-    .hero-visual{position:relative}
-    .dashboard-mock{background:#fff;border:3px solid #000;border-radius:24px;padding:28px;box-shadow:8px 8px 0 rgba(0,0,0,0.15)}
-    .dm-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;padding-bottom:16px;border-bottom:2px solid #000}
-    .dm-header .dm-title{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:#000;font-weight:800}
-    .dm-header .dm-status{display:flex;align-items:center;gap:6px;font-size:12px;color:#000;font-weight:700}
-    .dm-header .dm-status::before{content:'';width:6px;height:6px;background:#000;border-radius:50%}
-    .dm-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .dm-card{background:#FFCC00;border-radius:14px;padding:18px;border:2px solid #000}
-    .dm-card .dm-label{font-size:11px;color:#000;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;font-weight:700}
-    .dm-card .dm-value{font-size:26px;font-weight:900;color:#000}
-    .dm-card .dm-change{font-size:12px;margin-top:4px;font-weight:700}
-    .dm-card .up{color:#000}
-    .dm-card .down{color:#000}
-    .dm-card.dm-yellow{background:#000}
-    .dm-card.dm-yellow .dm-value{color:#FFCC00}
-    .dm-card.dm-yellow .dm-label{color:#FFCC00}
-    .dm-card.dm-yellow .dm-change{color:#FFCC00}
-    .dm-footer{margin-top:16px;padding-top:16px;border-top:2px solid #000;display:flex;justify-content:space-between;align-items:center}
-    .dm-footer .dm-bookings{font-size:13px;color:#000;font-weight:700}
-    .dm-footer .dm-arrow{color:#000;font-size:18px;font-weight:900}
+    /* ════════════════════════════════════════════════
+       DASHBOARD / LIVE BOOKINGS DIARY
+       ════════════════════════════════════════════════ */
+    .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:32px}
+    @media(max-width:768px){.stats-row{grid-template-columns:repeat(2,1fr)}}
+    .stat-card{background:#fff;border:3px solid #000;border-radius:16px;padding:20px;text-align:center;transition:.3s}
+    .stat-card:hover{transform:translateY(-3px);box-shadow:6px 6px 0 rgba(0,0,0,0.15)}
+    .stat-card .stat-num{font-size:32px;font-weight:900;color:#000;line-height:1.1}
+    .stat-card .stat-label{font-size:13px;font-weight:700;color:#000;margin-top:4px}
+    .stat-card .stat-change{font-size:12px;font-weight:700;margin-top:2px}
+    .stat-card .up{color:#000}
+    .stat-card .down{color:#000}
 
-    /* ── Features ── */
-    .features-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px}
-    @media(max-width:1024px){.features-grid{grid-template-columns:1fr 1fr}}
-    @media(max-width:640px){.features-grid{grid-template-columns:1fr}}
-    .f-card{background:#fff;border:3px solid #000;border-radius:20px;padding:32px;transition:.3s;position:relative;overflow:hidden}
-    .f-card:hover{border-color:#000;transform:translateY(-4px);box-shadow:8px 8px 0 rgba(0,0,0,0.2)}
-    .f-card .f-icon{font-size:32px;margin-bottom:16px;display:block}
-    .f-card h3{font-size:18px;font-weight:900;margin-bottom:10px;color:#000}
-    .f-card p{color:#000;font-size:14px;font-weight:600;line-height:1.7}
-    .f-card .f-list{margin-top:14px;list-style:none}
-    .f-card .f-list li{font-size:13px;color:#000;font-weight:700;padding:4px 0;display:flex;align-items:center;gap:8px}
-    .f-card .f-list li::before{content:'→';color:#000;font-weight:900}
+    .dash-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:24px}
+    @media(max-width:900px){.dash-grid{grid-template-columns:1fr}}
 
-    /* ── Dashboard Section ── */
-    .dashboard-preview{background:#fff;border:3px solid #000;border-radius:24px;padding:40px;overflow:hidden}
-    @media(max-width:768px){.dashboard-preview{padding:24px}}
-    .dp-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;flex-wrap:wrap;gap:16px}
-    .dp-header h3{font-size:20px;font-weight:900;color:#000}
-    .dp-tabs{display:flex;gap:4px;background:#FFCC00;padding:4px;border-radius:12px;border:2px solid #000}
-    .dp-tabs button{background:none;border:none;color:#000;padding:8px 16px;border-radius:10px;font-size:13px;cursor:pointer;transition:.2s;font-weight:700}
-    .dp-tabs button.active{background:#000;color:#FFCC00}
-    .dp-tabs button:not(.active):hover{background:rgba(0,0,0,0.1)}
-    .dp-grid{display:grid;grid-template-columns:2fr 1fr;gap:24px}
-    @media(max-width:768px){.dp-grid{grid-template-columns:1fr}}
-    .dp-chart{background:#FFCC00;border-radius:16px;padding:24px;border:2px solid #000}
-    .dp-chart .chart-title{font-size:13px;color:#000;margin-bottom:16px;text-transform:uppercase;letter-spacing:0.5px;font-weight:800}
-    .dp-chart .chart-bars{display:flex;align-items:flex-end;gap:8px;height:160px}
-    .dp-chart .bar{flex:1;background:#000;border-radius:6px 6px 0 0;transition:.3s;position:relative;min-height:20px;border:2px solid #000}
-    .dp-chart .bar:hover{opacity:0.8;transform:scaleY(1.02)}
-    .dp-chart .bar-labels{display:flex;gap:8px;margin-top:10px}
-    .dp-chart .bar-labels span{flex:1;text-align:center;font-size:10px;color:#000;font-weight:700}
-    .dp-list{background:#FFCC00;border-radius:16px;padding:24px;border:2px solid #000}
-    .dp-list .list-title{font-size:13px;color:#000;margin-bottom:16px;text-transform:uppercase;letter-spacing:0.5px;font-weight:800}
-    .dp-list .list-item{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:2px solid #000;font-size:14px;font-weight:700}
-    .dp-list .list-item:last-child{border-bottom:none}
-    .dp-list .list-item .item-name{color:#000;font-weight:700}
-    .dp-list .list-item .item-val{color:#000;font-weight:900}
-    .dp-list .list-item .item-sub{font-size:12px;color:#000;font-weight:600}
+    .bookings-diary{background:#fff;border:3px solid #000;border-radius:20px;padding:28px;overflow:hidden}
+    .bookings-diary h3{font-size:18px;font-weight:900;margin-bottom:18px;color:#000;display:flex;align-items:center;gap:8px}
+    .booking-entry{display:grid;grid-template-columns:120px 1fr 100px;align-items:center;gap:12px;padding:12px 0;border-bottom:2px solid #000;font-size:14px}
+    .booking-entry:last-child{border-bottom:none}
+    .booking-entry .b-date{font-weight:800;color:#000}
+    .booking-entry .b-desc{font-weight:700;color:#000}
+    .booking-entry .b-info{font-weight:800;color:#000;text-align:right;font-size:12px}
+    .booking-entry .b-status{display:inline-block;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:800;border:2px solid #000}
+    .b-status.active{background:#000;color:#FFCC00}
+    .b-status.sub{background:#FFCC00;color:#000;border-color:#000}
 
-    /* ── Booking Flow ── */
-    .booking-flow{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
-    @media(max-width:768px){.booking-flow{grid-template-columns:1fr}}
-    .b-step{background:#fff;border:3px solid #000;border-radius:20px;padding:32px;text-align:center;transition:.3s}
-    .b-step:hover{border-color:#000;transform:translateY(-2px);box-shadow:6px 6px 0 rgba(0,0,0,0.15)}
-    .b-step .b-num{display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;background:#000;border-radius:50%;font-size:18px;font-weight:900;color:#FFCC00;margin-bottom:16px;border:2px solid #000}
-    .b-step h3{font-size:16px;font-weight:900;color:#000;margin-bottom:8px}
-    .b-step p{color:#000;font-size:13px;font-weight:600;line-height:1.6}
+    .dash-sidebar{display:flex;flex-direction:column;gap:24px}
 
-    /* ── Revenue Ideas ── */
-    .rev-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-    @media(max-width:768px){.rev-grid{grid-template-columns:1fr}}
-    .rev-card{background:#fff;border:3px solid #000;border-radius:20px;padding:28px;transition:.3s}
-    .rev-card:hover{border-color:#000;transform:translateY(-4px);box-shadow:8px 8px 0 rgba(0,0,0,0.2)}
-    .rev-card .rev-icon{font-size:28px;margin-bottom:12px;display:block}
-    .rev-card h3{font-size:17px;font-weight:900;color:#000;margin-bottom:6px}
-    .rev-card p{color:#000;font-size:14px;font-weight:600;line-height:1.6}
-    .rev-card .rev-roi{display:inline-flex;align-items:center;gap:6px;margin-top:12px;background:#000;color:#FFCC00;padding:4px 12px;border-radius:8px;font-size:12px;font-weight:800}
+    .chart-card{background:#fff;border:3px solid #000;border-radius:20px;padding:28px}
+    .chart-card .chart-title{font-size:14px;font-weight:800;color:#000;margin-bottom:16px;text-transform:uppercase;letter-spacing:0.4px}
+    .chart-bars{display:flex;align-items:flex-end;gap:6px;height:140px}
+    .chart-bars .bar{flex:1;background:#000;border-radius:6px 6px 0 0;transition:.3s;position:relative;min-height:10px;border:2px solid #000;cursor:pointer}
+    .chart-bars .bar:hover{opacity:0.7;transform:scaleY(1.03)}
+    .bar-labels{display:flex;gap:6px;margin-top:8px}
+    .bar-labels span{flex:1;text-align:center;font-size:10px;color:#000;font-weight:700}
 
-    /* ── Testimonials ── */
-    .test-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
-    @media(max-width:1024px){.test-grid{grid-template-columns:1fr 1fr}}
-    @media(max-width:640px){.test-grid{grid-template-columns:1fr}}
-    .t-card{background:#fff;border:3px solid #000;border-radius:20px;padding:28px;position:relative}
-    .t-card .t-quote{font-size:40px;color:#000;position:absolute;top:16px;right:24px;font-family:Georgia,serif;line-height:1;font-weight:900}
-    .t-card .t-stars{color:#000;font-size:14px;margin-bottom:12px;font-weight:700}
-    .t-card blockquote{font-size:14px;color:#000;line-height:1.7;font-style:italic;margin-bottom:16px;font-weight:600}
-    .t-card .t-author{font-size:14px;font-weight:900;color:#000}
-    .t-card .t-role{font-size:12px;color:#000;font-weight:600}
+    .rev-list{background:#fff;border:3px solid #000;border-radius:20px;padding:28px}
+    .rev-list .rev-title{font-size:14px;font-weight:800;color:#000;margin-bottom:14px;text-transform:uppercase;letter-spacing:0.4px}
+    .rev-item{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:2px solid #000;font-size:14px}
+    .rev-item:last-child{border-bottom:none}
+    .rev-item .rev-name{font-weight:700;color:#000}
+    .rev-item .rev-val{font-weight:900;color:#000}
+    .rev-item .rev-sub{font-size:12px;color:#000;font-weight:600}
 
-    /* ── CTA ── */
-    .cta-section{max-width:100%;background:#FFCC00;position:relative;overflow:hidden;padding:120px 32px;border-top:3px solid #000;border-bottom:3px solid #000}
-    .cta-inner{max-width:800px;margin:0 auto;text-align:center;position:relative;z-index:2}
-    .cta-inner h2{font-size:48px;color:#000}@media(max-width:768px){.cta-inner h2{font-size:32px}}
-    .cta-inner p{color:#000;font-size:17px;font-weight:700;margin-bottom:32px}
-    .cta-inner .btn-group{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+    /* ════════════════════════════════════════════════
+       BOOKING PARTNERS
+       ════════════════════════════════════════════════ */
+    .partners-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+    @media(max-width:1024px){.partners-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:600px){.partners-grid{grid-template-columns:1fr}}
+    .partner-card{background:#fff;border:3px solid #000;border-radius:20px;padding:28px;transition:.3s;display:flex;flex-direction:column}
+    .partner-card:hover{transform:translateY(-4px);box-shadow:8px 8px 0 rgba(0,0,0,0.2)}
+    .partner-card.featured{background:#000;color:#FFCC00;border-color:#000}
+    .partner-card.featured h3,.partner-card.featured p{color:#FFCC00}
+    .partner-card.featured .partner-btn{background:#FFCC00;color:#000;border-color:#FFCC00}
+    .partner-card.featured .partner-btn:hover{background:#fff;color:#000}
+    .partner-card .partner-logo{width:100%;height:50px;background:#FFCC00;border:2px solid #000;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:14px;margin-bottom:16px;color:#000}
+    .partner-card.featured .partner-logo{background:#FFCC00;border-color:#FFCC00;color:#000}
+    .partner-card h3{font-size:16px;font-weight:900;margin-bottom:6px;color:#000}
+    .partner-card p{font-size:13px;font-weight:600;line-height:1.6;color:#000;margin-bottom:16px;flex:1}
+    .partner-btn{display:inline-block;background:#000;color:#FFCC00;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:800;border:2px solid #000;transition:.3s;text-align:center}
+    .partner-btn:hover{background:#fff;color:#000;transform:translateY(-2px)}
 
-    /* ── Footer ── */
-    footer{background:#000;padding:48px 32px;text-align:center;border-top:3px solid #FFCC00}
-    footer .f-inner{max-width:1400px;margin:0 auto}
-    footer .f-brand{font-size:16px;font-weight:900;color:#FFCC00;margin-bottom:6px}
-    footer p{color:#ccc;font-size:14px;font-weight:600}
+    /* ════════════════════════════════════════════════
+       MONTHLY ACCOUNTS PROMO
+       ════════════════════════════════════════════════ */
+    .monthly-promo{background:#fff;border:3px solid #000;border-radius:24px;padding:48px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+    @media(max-width:768px){.monthly-promo{grid-template-columns:1fr;padding:32px}}
+    .monthly-promo h2{font-size:36px;font-weight:900;letter-spacing:-0.02em;line-height:1.1;color:#000;margin-bottom:14px}
+    @media(max-width:768px){.monthly-promo h2{font-size:26px}}
+    .monthly-promo p{font-size:15px;font-weight:600;line-height:1.7;color:#000;margin-bottom:20px}
+    .monthly-benefits{list-style:none;margin-bottom:24px}
+    .monthly-benefits li{font-size:14px;font-weight:700;color:#000;padding:6px 0;display:flex;align-items:center;gap:10px}
+    .monthly-benefits li::before{content:'✓';font-weight:900;font-size:16px;background:#000;color:#FFCC00;width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .monthly-promo .btn-group{display:flex;gap:14px;flex-wrap:wrap}
+    .promo-visual{background:#FFCC00;border:3px solid #000;border-radius:16px;padding:32px;text-align:center}
+    .promo-visual .big-num{font-size:64px;font-weight:900;color:#000;line-height:1}
+    .promo-visual .big-label{font-size:16px;font-weight:700;color:#000;margin:8px 0 16px}
+    .promo-visual .badge-group{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+    .promo-visual .badge-group span{background:#000;color:#FFCC00;padding:6px 14px;border-radius:8px;font-size:12px;font-weight:800}
+
+    /* ════════════════════════════════════════════════
+       STORAGE SECTION
+       ════════════════════════════════════════════════ */
+    .storage-layout{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+    @media(max-width:900px){.storage-layout{grid-template-columns:1fr}}
+
+    /* Floor Plan */
+    .floor-plan{background:#fff;border:3px solid #000;border-radius:20px;padding:28px}
+    .floor-plan h3{font-size:16px;font-weight:900;margin-bottom:16px;color:#000;text-transform:uppercase;letter-spacing:0.3px}
+    .fp-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+    @media(max-width:600px){.fp-grid{grid-template-columns:repeat(4,1fr)}}
+    .fp-unit{border:2px solid #000;border-radius:8px;padding:12px 6px;text-align:center;font-size:11px;font-weight:800;transition:.2s;cursor:default;display:flex;flex-direction:column;align-items:center;gap:3px}
+    .fp-unit .u-num{font-weight:900;font-size:13px;color:#000}
+    .fp-unit .u-size{font-size:9px;font-weight:700;color:#000}
+    .fp-unit.available{background:#00C853;border-color:#000;color:#000}
+    .fp-unit.occupied{background:#FF1744;border-color:#000;color:#000}
+    .fp-unit.booked{background:#FFB300;border-color:#000;color:#000}
+    .fp-unit:hover{transform:scale(1.05);z-index:2}
+    .fp-legend{display:flex;gap:16px;margin-top:14px;flex-wrap:wrap;font-size:12px;font-weight:700}
+    .fp-legend span{display:flex;align-items:center;gap:6px}
+    .fp-legend .swatch{width:14px;height:14px;border:2px solid #000;border-radius:4px}
+    .fp-legend .swatch.green{background:#00C853}
+    .fp-legend .swatch.red{background:#FF1744}
+    .fp-legend .swatch.amber{background:#FFB300}
+    .fp-dimensions{margin-top:10px;padding:8px 12px;background:#FFCC00;border-radius:8px;font-size:12px;font-weight:700;border:2px solid #000;text-align:center}
+
+    /* Pricing Table */
+    .pricing-card{background:#fff;border:3px solid #000;border-radius:20px;padding:28px}
+    .pricing-card h3{font-size:16px;font-weight:900;margin-bottom:16px;color:#000;text-transform:uppercase;letter-spacing:0.3px}
+    .pricing-table{width:100%;border-collapse:collapse}
+    .pricing-table th{text-align:left;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:0.4px;padding:10px 12px;border-bottom:3px solid #000;color:#000}
+    .pricing-table td{padding:12px;border-bottom:2px solid #000;font-size:14px;font-weight:700;color:#000}
+    .pricing-table tr:last-child td{border-bottom:none}
+    .pricing-table .price{font-weight:900;text-align:right}
+    .pricing-table tr:hover td{background:rgba(0,0,0,0.04)}
+    .storage-extras{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}
+    .storage-extras .extra{background:#FFCC00;border:2px solid #000;border-radius:12px;padding:16px;text-align:center;font-weight:800;font-size:13px;color:#000}
+    .storage-extras .extra .x-icon{font-size:22px;display:block;margin-bottom:6px}
+
+    /* ════════════════════════════════════════════════
+       SERVICES GRID
+       ════════════════════════════════════════════════ */
+    .services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+    @media(max-width:1024px){.services-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:600px){.services-grid{grid-template-columns:1fr}}
+    .service-card{background:#fff;border:3px solid #000;border-radius:20px;padding:28px;text-align:center;transition:.3s}
+    .service-card:hover{transform:translateY(-4px);box-shadow:8px 8px 0 rgba(0,0,0,0.2)}
+    .service-card .s-icon{font-size:36px;margin-bottom:12px;display:block}
+    .service-card h3{font-size:15px;font-weight:900;margin-bottom:6px;color:#000}
+    .service-card p{font-size:13px;font-weight:600;line-height:1.6;color:#000}
+
+    /* ════════════════════════════════════════════════
+       CONTACT & LEGAL
+       ════════════════════════════════════════════════ */
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    @media(max-width:900px){.contact-grid{grid-template-columns:1fr}}
+    .contact-card{background:#fff;border:3px solid #000;border-radius:20px;padding:28px}
+    .contact-card h3{font-size:17px;font-weight:900;margin-bottom:14px;color:#000}
+    .contact-detail{display:flex;align-items:flex-start;gap:12px;padding:8px 0;font-size:14px;font-weight:700;color:#000}
+    .contact-detail .cd-icon{font-size:20px;flex-shrink:0;width:24px;text-align:center}
+    .hours-table{width:100%;border-collapse:collapse;margin-top:12px}
+    .hours-table td{padding:8px 12px;border-bottom:2px solid #000;font-size:13px;font-weight:700;color:#000}
+    .hours-table td:last-child{text-align:right;font-weight:800}
+    .hours-table tr:last-child td{border-bottom:none}
+
+    .legal-section{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:24px}
+    @media(max-width:900px){.legal-section{grid-template-columns:1fr}}
+    .legal-card{background:#fff;border:3px solid #000;border-radius:20px;padding:28px}
+    .legal-card h3{font-size:16px;font-weight:900;margin-bottom:12px;color:#000;display:flex;align-items:center;gap:8px}
+    .legal-card p,.legal-card li{font-size:13px;font-weight:600;line-height:1.7;color:#000}
+    .legal-card ul{list-style:none;padding:0}
+    .legal-card ul li{padding:4px 0;display:flex;align-items:flex-start;gap:8px}
+    .legal-card ul li::before{content:'→';font-weight:900;color:#000;flex-shrink:0}
+
+    /* ════════════════════════════════════════════════
+       FOOTER
+       ════════════════════════════════════════════════ */
+    footer{background:#000;padding:48px 24px;text-align:center;border-top:3px solid #FFCC00}
+    footer .f-inner{max-width:1280px;margin:0 auto}
+    footer .f-brand{font-size:18px;font-weight:900;color:#FFCC00;margin-bottom:4px}
+    footer p{color:#ccc;font-size:14px;font-weight:600;margin:4px 0}
     footer a{color:#FFCC00;transition:.2s;font-weight:700}
     footer a:hover{color:#fff}
-    footer .f-social{display:flex;justify-content:center;gap:16px;margin:16px 0;font-size:20px}
-    footer .f-social a{width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.1);border-radius:50%;transition:.3s;color:#FFCC00;font-weight:700}
-    footer .f-social a:hover{background:#FFCC00;color:#000;transform:translateY(-2px)}
-
-    /* ── B&W Coach Stripe (brand accent) ── */
-    .pattern-coach{background:repeating-linear-gradient(45deg,transparent,transparent 12px,rgba(0,0,0,0.06) 12px,rgba(0,0,0,0.06) 24px)}
+    footer .f-hr{width:60px;height:3px;background:#FFCC00;margin:16px auto;border-radius:2px}
+    footer .f-small{font-size:12px;color:#888;margin-top:8px}
 
     /* ── Chequer Pattern Accent ── */
     .pattern-chequer{background-image:linear-gradient(45deg,rgba(0,0,0,0.1) 25%,transparent 25%),linear-gradient(-45deg,rgba(0,0,0,0.1) 25%,transparent 25%),linear-gradient(45deg,transparent 75%,rgba(0,0,0,0.1) 75%),linear-gradient(-45deg,transparent 75%,rgba(0,0,0,0.1) 75%);background-size:20px 20px;background-position:0 0,0 10px,10px -10px,-10px 0}
 
-    /* ── Floating Animation ── */
-    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-    .float{animation:float 4s ease-in-out infinite}
+    /* ── Animations ── */
+    @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+    .fade-in{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease}
+    .fade-in.visible{opacity:1;transform:translateY(0)}
   </style>
 </head>
 <body>
-  <!-- Nav -->
+
+  <!-- ════════════════════════════════════════════════
+       NAV
+       ════════════════════════════════════════════════ -->
   <nav>
     <div class="inner">
-      <a href="#" class="logo"><span class="brand-dot"></span> City<span>Park</span> <small>SaaS</small></a>
-      <div class="nav-links">
-        <a href="#features">Features</a>
+      <a href="#" class="logo"><span class="dot"></span> City Car Parks</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-links" id="navLinks">
         <a href="#dashboard">Dashboard</a>
-        <a href="#book">Book</a>
-        <a href="#revenue">Revenue</a>
-        <a href="https://github.com/darrenhopwood13-maker/city-car-parks-saas" target="_blank" class="btn-nav">View on GitHub →</a>
+        <a href="#parking">Parking</a>
+        <a href="#monthly">Monthly</a>
+        <a href="#storage">Storage</a>
+        <a href="#contact">Contact</a>
+        <a href="#book" class="btn-nav">Book Now</a>
       </div>
     </div>
   </nav>
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="grid">
-      <div>
-        <div class="tag">🚀 SaaS Launch</div>
-        <h1>Turn Your Parking Lot Into a <span class="highlight">Revenue Engine</span></h1>
-        <p>A complete SaaS platform for City Car Parks & Storage — real-time booking, automated pricing, revenue analytics, and customer management. Built for modern parking operations.</p>
-        <div class="btn-group">
-          <a href="#book" class="btn-primary">✨ Book a Space</a>
-          <a href="#dashboard" class="btn-secondary">📊 View Dashboard</a>
+  <!-- ════════════════════════════════════════════════
+       HERO / BOOKING SEARCH
+       ════════════════════════════════════════════════ -->
+  <section class="hero" id="book">
+    <div class="container">
+      <h1>Hoxton's Parking &amp; Storage.<br />Family-Run Since 1998.</h1>
+      <p class="tagline">Underground parking and secure storage at 244-278 Crondall Street, London N1. Book online or pay on arrival.</p>
+
+      <div class="search-card">
+        <div class="search-row">
+          <div class="field">
+            <label>📍 Type</label>
+            <select>
+              <option>Parking — Daily</option>
+              <option>Parking — Monthly</option>
+              <option>Storage Unit</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>📅 Date</label>
+            <input type="date" value="2026-06-25" />
+          </div>
+          <div class="field">
+            <label>⏰ Time</label>
+            <input type="time" value="09:00" />
+          </div>
+          <div class="field">
+            <label>&nbsp;</label>
+            <button class="btn-black" style="width:100%;justify-content:center;padding:12px 24px">🔍 Find Parking</button>
+          </div>
         </div>
-        <div class="stats">
-          <div><div class="num">28</div><div class="lbl">Years Operating</div></div>
-          <div><div class="num">4.6★</div><div class="lbl">Customer Rating</div></div>
-          <div><div class="num">£250K+</div><div class="lbl">Annual Revenue</div></div>
-          <div><div class="num">94%</div><div class="lbl">Occupancy Rate</div></div>
-        </div>
-      </div>
-      <div class="hero-visual float">
-        <div class="dashboard-mock">
-          <div class="dm-header">
-            <div class="dm-title">City Car Parks · Command Centre</div>
-            <div class="dm-status">Live · 24/7</div>
-          </div>
-          <div class="dm-grid">
-            <div class="dm-card dm-yellow">
-              <div class="dm-label">Today's Revenue</div>
-              <div class="dm-value">£847</div>
-              <div class="dm-change up">▲ +12.4% vs last week</div>
-            </div>
-            <div class="dm-card">
-              <div class="dm-label">Active Bookings</div>
-              <div class="dm-value">34</div>
-              <div class="dm-change up">▲ 6 new today</div>
-            </div>
-            <div class="dm-card">
-              <div class="dm-label">Spaces Available</div>
-              <div class="dm-value">12</div>
-              <div class="dm-change down">▼ 3 since yesterday</div>
-            </div>
-            <div class="dm-card">
-              <div class="dm-label">Storage Units</div>
-              <div class="dm-value">8/12</div>
-              <div class="dm-change up">Full capacity</div>
-            </div>
-          </div>
-          <div class="dm-footer">
-            <div class="dm-bookings">📅 Next 7 days: <strong>47 bookings</strong></div>
-            <div class="dm-arrow">→</div>
-          </div>
+        <div class="partner-badges">
+          <span>Book through your favourite app — or direct with us:</span>
+          <a href="https://www.yourparkingspace.co.uk" target="_blank" class="badge">YourParkingSpace</a>
+          <a href="https://www.justpark.com" target="_blank" class="badge">JustPark</a>
+          <a href="https://www.parkopedia.co.uk" target="_blank" class="badge">Parkopedia</a>
+          <a href="#partners" class="badge" style="background:#000;color:#FFCC00">Book Direct →</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Features -->
-  <section id="features">
-    <div class="tag">⚡ Platform Features</div>
-    <h2>Everything You Need to Run & Grow</h2>
-    <p>A complete operating system for parking and storage — from booking to analytics to automated marketing.</p>
-    <div class="features-grid">
-      <div class="f-card">
-        <span class="f-icon">📱</span>
-        <h3>Smart Booking Engine</h3>
-        <p>Real-time availability with dynamic pricing. Customers book online, you get paid automatically.</p>
-        <ul class="f-list">
-          <li>Dynamic peak/off-peak pricing</li>
-          <li>Automated confirmation & reminders</li>
-          <li>Monthly subscription management</li>
-          <li>Stripe/PayPal integration</li>
-        </ul>
-      </div>
-      <div class="f-card">
-        <span class="f-icon">📊</span>
-        <h3>Revenue Analytics</h3>
-        <p>See exactly how your business is performing — live dashboards, trends, and forecasts.</p>
-        <ul class="f-list">
-          <li>Real-time revenue tracking</li>
-          <li>Occupancy heatmaps</li>
-          <li>YoY comparison charts</li>
-          <li>AI revenue forecasting</li>
-        </ul>
-      </div>
-      <div class="f-card">
-        <span class="f-icon">🤖</span>
-        <h3>AI Automation</h3>
-        <p>Let AI handle the repetitive work — pricing, marketing, customer comms, and reporting.</p>
-        <ul class="f-list">
-          <li>Dynamic price optimisation</li>
-          <li>Automated email/SMS campaigns</li>
-          <li>Customer retention scoring</li>
-          <li>Predictive occupancy alerts</li>
-        </ul>
-      </div>
-      <div class="f-card">
-        <span class="f-icon">🏢</span>
-        <h3>Storage Management</h3>
-        <p>Track every unit, every contract, every invoice — all in one place.</p>
-        <ul class="f-list">
-          <li>Unit inventory & availability</li>
-          <li>Automated billing cycles</li>
-          <li>Digital contract management</li>
-          <li>Customer portal access</li>
-        </ul>
-      </div>
-      <div class="f-card">
-        <span class="f-icon">👥</span>
-        <h3>Customer Portal</h3>
-        <p>Give your customers self-service access to bookings, invoices, and account management.</p>
-        <ul class="f-list">
-          <li>Digital booking history</li>
-          <li>Invoice & receipt download</li>
-          <li>Account management</li>
-          <li>24/7 access requests</li>
-        </ul>
-      </div>
-      <div class="f-card">
-        <span class="f-icon">📈</span>
-        <h3>Growth Toolkit</h3>
-        <p>Built-in tools to acquire, retain, and grow your customer base on autopilot.</p>
-        <ul class="f-list">
-          <li>Referral programme automation</li>
-          <li>Review request campaigns</li>
-          <li>Seasonal promo scheduler</li>
-          <li>Competitor price monitoring</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- Dashboard Preview -->
+  <!-- ════════════════════════════════════════════════
+       DASHBOARD / LIVE BOOKINGS DIARY
+       ════════════════════════════════════════════════ -->
   <section id="dashboard">
-    <div class="tag">📊 Live Dashboard</div>
-    <h2>Your Business at a Glance</h2>
-    <p>Real-time metrics that matter — revenue, occupancy, customer acquisition, and trends.</p>
-    <div class="dashboard-preview">
-      <div class="dp-header">
-        <h3>City Car Parks · Performance Overview</h3>
-        <div class="dp-tabs">
-          <button class="active">Revenue</button>
-          <button>Occupancy</button>
-          <button>Customers</button>
-          <button>Forecast</button>
+    <div class="container">
+      <div class="tag">📊 Live Dashboard</div>
+      <h2 class="section-title">Your Business at a Glance</h2>
+      <p class="section-sub">Live metrics, upcoming bookings, and revenue insights for City Car Parks &amp; Storage.</p>
+
+      <!-- Stats Row -->
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-num">£847</div>
+          <div class="stat-label">Today's Revenue</div>
+          <div class="stat-change up">▲ +12.4% vs last week</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">34</div>
+          <div class="stat-label">Active Bookings</div>
+          <div class="stat-change up">▲ +6 today</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">12</div>
+          <div class="stat-label">Spaces Available</div>
+          <div class="stat-change down">▼ 3 since yesterday</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">8/12</div>
+          <div class="stat-label">Storage Units</div>
+          <div class="stat-change up">▲ 67% occupied</div>
         </div>
       </div>
-      <div class="dp-grid">
-        <div class="dp-chart">
-          <div class="chart-title">Monthly Revenue 2026 (£)</div>
-          <div class="chart-bars" id="revenueChart"></div>
-          <div class="bar-labels" id="barLabels"></div>
+
+      <!-- Bookings Diary + Charts -->
+      <div class="dash-grid">
+        <div class="bookings-diary">
+          <h3>📅 This Week's Bookings</h3>
+
+          <div class="booking-entry">
+            <div class="b-date">Mon 22 Jun</div>
+            <div class="b-desc">BMW 5 Series · 9am-5pm</div>
+            <div class="b-info">Bay 12 <span class="b-status active">Active</span></div>
+          </div>
+          <div class="booking-entry">
+            <div class="b-date">Tue 23 Jun</div>
+            <div class="b-desc">Audi A3 · Monthly Subscriber</div>
+            <div class="b-info">Bay 8 <span class="b-status sub">Sub</span></div>
+          </div>
+          <div class="booking-entry">
+            <div class="b-date">Wed 24 Jun</div>
+            <div class="b-desc">Tesla Model 3 · 10am-6pm</div>
+            <div class="b-info">Bay 3 <span class="b-status active">Active</span></div>
+          </div>
+          <div class="booking-entry">
+            <div class="b-date">Thu 25 Jun</div>
+            <div class="b-desc">Mercedes C-Class · 8am-4pm</div>
+            <div class="b-info">Bay 7 <span class="b-status active">Active</span></div>
+          </div>
+          <div class="booking-entry">
+            <div class="b-date">Fri 26 Jun</div>
+            <div class="b-desc">Range Rover Sport · 9am-6pm</div>
+            <div class="b-info">Bay 1 <span class="b-status active">Active</span></div>
+          </div>
+          <div class="booking-entry">
+            <div class="b-date">Fri 26 Jun</div>
+            <div class="b-desc">VW Golf · Monthly Subscriber</div>
+            <div class="b-info">Bay 5 <span class="b-status sub">Sub</span></div>
+          </div>
+          <div class="booking-entry">
+            <div class="b-date">Sat 27 Jun</div>
+            <div class="b-desc">Porsche Cayenne · 12pm-8pm</div>
+            <div class="b-info">Bay 2 <span class="b-status active">Active</span></div>
+          </div>
+          <div class="booking-entry">
+            <div class="b-date">Sun 28 Jun</div>
+            <div class="b-desc">Ford Transit · Overnight</div>
+            <div class="b-info">Bay 10 <span class="b-status active">Active</span></div>
+          </div>
         </div>
-        <div class="dp-list">
-          <div class="list-title">Top Revenue Opportunities</div>
-          <div class="list-item"><div><div class="item-name">EV Charging Installation</div><div class="item-sub">+£1,200/mo potential</div></div><div class="item-val">£360/mo</div></div>
-          <div class="list-item"><div><div class="item-name">Cycle Storage Lockers</div><div class="item-sub">Growing demand, low cost</div></div><div class="item-val">£520/mo</div></div>
-          <div class="list-item"><div><div class="item-name">Monthly Subscriptions</div><div class="item-sub">Only 34% penetration</div></div><div class="item-val">£2,140/mo</div></div>
-          <div class="list-item"><div><div class="item-name">Parcel Acceptance</div><div class="item-sub">Unserved local need</div></div><div class="item-val">£890/mo</div></div>
-          <div class="list-item"><div><div class="item-name">Dynamic Pricing</div><div class="item-sub">AI-optimised rates</div></div><div class="item-val">+18% avg</div></div>
+
+        <div class="dash-sidebar">
+          <!-- Mini Chart -->
+          <div class="chart-card">
+            <div class="chart-title">Monthly Revenue (£k)</div>
+            <div class="chart-bars" id="revenueChart"></div>
+            <div class="bar-labels" id="barLabels"></div>
+          </div>
+
+          <!-- Revenue Opportunities -->
+          <div class="rev-list">
+            <div class="rev-title">💰 Revenue Opportunities</div>
+            <div class="rev-item">
+              <div><div class="rev-name">EV Charging</div><div class="rev-sub">7kW &amp; 22kW points</div></div>
+              <div class="rev-val">+£1,200/mo</div>
+            </div>
+            <div class="rev-item">
+              <div><div class="rev-name">Cycle Storage</div><div class="rev-sub">Cyclescheme approved</div></div>
+              <div class="rev-val">+£520/mo</div>
+            </div>
+            <div class="rev-item">
+              <div><div class="rev-name">Monthly Subscriptions</div><div class="rev-sub">34% penetration</div></div>
+              <div class="rev-val">+£2,140/mo</div>
+            </div>
+            <div class="rev-item">
+              <div><div class="rev-name">Parcel Acceptance</div><div class="rev-sub">Unserved local need</div></div>
+              <div class="rev-val">+£890/mo</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Booking Flow -->
-  <section id="book">
-    <div class="tag">📅 Book Online</div>
-    <h2>Book in 60 Seconds</h2>
-    <p>No phone calls, no waiting — just select, pay, and park.</p>
-    <div class="booking-flow">
-      <div class="b-step">
-        <div class="b-num">1</div>
-        <h3>Choose Your Space</h3>
-        <p>Select parking or storage, then pick your dates. Real-time availability shown.</p>
-      </div>
-      <div class="b-step">
-        <div class="b-num">2</div>
-        <h3>Pick Your Plan</h3>
-        <p>Hourly, daily, weekly, or monthly — with dynamic pricing showing the best rate.</p>
-      </div>
-      <div class="b-step">
-        <div class="b-num">3</div>
-        <h3>Park & Relax</h3>
-        <p>Get instant confirmation, access instructions, and a reminder before your booking.</p>
+  <!-- ════════════════════════════════════════════════
+       BOOKING PARTNERS
+       ════════════════════════════════════════════════ -->
+  <section id="partners">
+    <div class="container">
+      <div class="tag">🔗 Book Your Way</div>
+      <h2 class="section-title">Direct or Through Your Favourite App</h2>
+      <p class="section-sub">Find City Car Parks on all major platforms — or book direct for the best rates with zero commission.</p>
+
+      <div class="partners-grid">
+        <div class="partner-card">
+          <div class="partner-logo">YP</div>
+          <h3>YourParkingSpace</h3>
+          <p>Search, compare, and book parking spaces across the UK. Find City Car Parks with real-time availability and secure payment.</p>
+          <a href="https://www.yourparkingspace.co.uk" target="_blank" class="partner-btn">Book on YPS →</a>
+        </div>
+        <div class="partner-card">
+          <div class="partner-logo">JP</div>
+          <h3>JustPark</h3>
+          <p>The UK's largest parking marketplace. Book City Car Parks by the hour, day, or month with instant confirmation and free cancellation.</p>
+          <a href="https://www.justpark.com" target="_blank" class="partner-btn">Book on JustPark →</a>
+        </div>
+        <div class="partner-card">
+          <div class="partner-logo">PK</div>
+          <h3>Parkopedia</h3>
+          <p>Find and book parking with detailed info, pricing, and live availability. City Car Parks listed with up-to-date rates and space counts.</p>
+          <a href="https://www.parkopedia.co.uk" target="_blank" class="partner-btn">Book on Parkopedia →</a>
+        </div>
+        <div class="partner-card featured">
+          <div class="partner-logo">★</div>
+          <h3>Book Direct</h3>
+          <p>No commission, best rates guaranteed. Book and pay directly with City Car Parks. Priority bay selection and flexible changes.</p>
+          <a href="#book" class="partner-btn">Book Direct →</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Revenue Ideas -->
-  <section id="revenue">
-    <div class="tag">💰 Revenue Engine</div>
-    <h2>Increase Revenue by 3x</h2>
-    <p>AI-driven analysis of your business found these high-impact opportunities to grow City Car Parks.</p>
-    <div class="rev-grid" style="margin-bottom:24px">
-      <div class="rev-card">
-        <span class="rev-icon">🔌</span>
-        <h3>EV Charging Hub</h3>
-        <p>Install 4-8 EV chargers. Government grants cover up to 75% of installation. Attracts premium customers and generates recurring charging revenue.</p>
-        <div class="rev-roi">▲ +£1,200/mo · 92% ROI in Year 1</div>
-      </div>
-      <div class="rev-card">
-        <span class="rev-icon">🚲</span>
-        <h3>Cycle Storage Lockers</h3>
-        <p>Secure bike storage is in massive demand in Hoxton. Low installation cost, high monthly rental yield per locker.</p>
-        <div class="rev-roi">▲ +£520/mo · 150% ROI in Year 1</div>
-      </div>
-    </div>
-    <div class="rev-grid">
-      <div class="rev-card">
-        <span class="rev-icon">📦</span>
-        <h3>Parcel Acceptance Hub</h3>
-        <p>Local residents can't receive deliveries during work hours. Offer parcel acceptance for a small fee. Creates footfall and repeat customers.</p>
-        <div class="rev-roi">▲ +£890/mo · Minimal setup cost</div>
-      </div>
-      <div class="rev-card">
-        <span class="rev-icon">🤖</span>
-        <h3>AI Dynamic Pricing</h3>
-        <p>Our AI engine automatically adjusts prices based on demand, events, seasonality, and competitor rates. Proven 18% revenue uplift.</p>
-        <div class="rev-roi">▲ +18% overall · Zero effort</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Testimonials -->
-  <section>
-    <div class="tag">⭐ Customer Love</div>
-    <h2>What Customers Say</h2>
-    <p>Rated 4.6/5 across 48+ reviews from real City Car Parks customers.</p>
-    <div class="test-grid">
-      <div class="t-card">
-        <div class="t-quote">"</div>
-        <div class="t-stars">★★★★★</div>
-        <blockquote>Great secure parking close to Hoxton station. Always felt safe leaving my car here. The new online booking system makes it even easier.</blockquote>
-        <div class="t-author">James M.</div>
-        <div class="t-role">Regular Customer · 2 years</div>
-      </div>
-      <div class="t-card">
-        <div class="t-quote">"</div>
-        <div class="t-stars">★★★★★</div>
-        <blockquote>I've been storing with City Car Parks for over two years. Reliable, fair pricing, and the team are always helpful. The monthly subscription saved me a fortune.</blockquote>
-        <div class="t-author">Sarah K.</div>
-        <div class="t-role">Storage Customer · 2+ years</div>
-      </div>
-      <div class="t-card">
-        <div class="t-quote">"</div>
-        <div class="t-stars">★★★★½</div>
-        <blockquote>Perfect for parking when working in Shoreditch. Underground, secure, and much cheaper than the NCP down the road. The app makes booking a breeze.</blockquote>
-        <div class="t-author">David R.</div>
-        <div class="t-role">Commut Customer · 1 year</div>
+  <!-- ════════════════════════════════════════════════
+       MONTHLY ACCOUNTS PROMO
+       ════════════════════════════════════════════════ -->
+  <section id="monthly">
+    <div class="container">
+      <div class="monthly-promo">
+        <div>
+          <div class="tag" style="margin-bottom:12px">📋 Monthly Parking</div>
+          <h2>Your Space, Every Day</h2>
+          <p>Never hunt for parking again. Secure a reserved bay at City Car Parks with a simple monthly account. One invoice, one payment — park anytime, day or night.</p>
+          <ul class="monthly-benefits">
+            <li>24/7 access — park whenever you need</li>
+            <li>Reserved bay — your space, always waiting</li>
+            <li>One monthly invoice — simple and paperless</li>
+            <li>10% off daily rates — save every time</li>
+          </ul>
+          <div class="btn-group">
+            <a href="#contact" class="btn-black">Sign Up Today →</a>
+            <a href="tel:02077394414" class="btn-outline">📞 Call 020 7739 4414</a>
+          </div>
+        </div>
+        <div class="promo-visual">
+          <div class="big-num">£280</div>
+          <div class="big-label">per month · All-inclusive</div>
+          <div class="badge-group">
+            <span>24/7 Access</span>
+            <span>Reserved Bay</span>
+            <span>No Booking Fees</span>
+            <span>Cancel Anytime</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="cta-section">
-    <div class="cta-inner">
-      <div class="tag" style="margin:0 auto 16px">✨ Ready to Transform?</div>
-      <h2>Your Business, Supercharged</h2>
-      <p>This SaaS platform can be live for your business in 24 hours. Real-time booking, AI pricing, revenue dashboard — everything you need.</p>
-      <div class="btn-group">
-        <a href="tel:02077394414" class="btn-primary">📞 Call 020 7739 4414</a>
-        <a href="https://github.com/darrenhopwood13-maker/city-car-parks-saas" target="_blank" class="btn-secondary">View on GitHub →</a>
+  <!-- ════════════════════════════════════════════════
+       STORAGE SECTION
+       ════════════════════════════════════════════════ -->
+  <section id="storage">
+    <div class="container">
+      <div class="tag">📦 Secure Storage</div>
+      <h2 class="section-title">Storage at City Car Parks</h2>
+      <p class="section-sub">Clean, dry, secure underground storage units with 24/7 CCTV. All sizes available from small lockers to extra-large spaces.</p>
+
+      <div class="storage-layout">
+        <!-- Floor Plan -->
+        <div class="floor-plan">
+          <h3>📐 Storage Unit Floor Plan</h3>
+          <div class="fp-grid">
+            <!-- Small units -->
+            <div class="fp-unit occupied"><span class="u-num">S1</span><span class="u-size">3×3ft</span></div>
+            <div class="fp-unit available"><span class="u-num">S2</span><span class="u-size">3×3ft</span></div>
+            <div class="fp-unit available"><span class="u-num">S3</span><span class="u-size">3×3ft</span></div>
+            <div class="fp-unit occupied"><span class="u-num">S4</span><span class="u-size">3×3ft</span></div>
+            <div class="fp-unit occupied"><span class="u-num">S5</span><span class="u-size">3×3ft</span></div>
+            <div class="fp-unit available"><span class="u-num">S6</span><span class="u-size">3×3ft</span></div>
+            <div class="fp-unit occupied"><span class="u-num">S7</span><span class="u-size">3×3ft</span></div>
+            <div class="fp-unit available"><span class="u-num">S8</span><span class="u-size">3×3ft</span></div>
+            <div class="fp-unit booked"><span class="u-num">S9</span><span class="u-size">3×3ft</span></div>
+            <div class="fp-unit available"><span class="u-num">S10</span><span class="u-size">3×3ft</span></div>
+            <!-- Medium units -->
+            <div class="fp-unit occupied"><span class="u-num">M1</span><span class="u-size">4×4ft</span></div>
+            <div class="fp-unit occupied"><span class="u-num">M2</span><span class="u-size">4×4ft</span></div>
+            <div class="fp-unit available"><span class="u-num">M3</span><span class="u-size">4×4ft</span></div>
+            <div class="fp-unit booked"><span class="u-num">M4</span><span class="u-size">4×4ft</span></div>
+            <div class="fp-unit available"><span class="u-num">M5</span><span class="u-size">4×4ft</span></div>
+            <div class="fp-unit occupied"><span class="u-num">M6</span><span class="u-size">4×4ft</span></div>
+            <!-- Large units -->
+            <div class="fp-unit available"><span class="u-num">L1</span><span class="u-size">5×5ft</span></div>
+            <div class="fp-unit occupied"><span class="u-num">L2</span><span class="u-size">5×5ft</span></div>
+            <div class="fp-unit occupied"><span class="u-num">L3</span><span class="u-size">5×5ft</span></div>
+            <div class="fp-unit available"><span class="u-num">L4</span><span class="u-size">5×5ft</span></div>
+            <!-- Extra Large -->
+            <div class="fp-unit occupied"><span class="u-num">XL1</span><span class="u-size">5×10ft</span></div>
+            <div class="fp-unit available"><span class="u-num">XL2</span><span class="u-size">5×10ft</span></div>
+          </div>
+          <div class="fp-legend">
+            <span><span class="swatch green"></span> Available</span>
+            <span><span class="swatch red"></span> Occupied</span>
+            <span><span class="swatch amber"></span> Booked</span>
+          </div>
+          <div class="fp-dimensions">Total: 22 units · 12 Available · 8 Occupied · 2 Booked</div>
+        </div>
+
+        <!-- Pricing -->
+        <div class="pricing-card">
+          <h3>💷 Storage Pricing</h3>
+          <table class="pricing-table">
+            <tr><th>Size</th><th>Dimensions</th><th>Price</th></tr>
+            <tr><td>Small</td><td>3 × 3 ft</td><td class="price">£15/week</td></tr>
+            <tr><td>Medium</td><td>4 × 4 ft</td><td class="price">£25/week</td></tr>
+            <tr><td>Large</td><td>5 × 5 ft</td><td class="price">£35/week</td></tr>
+            <tr><td>Extra Large</td><td>5 × 10 ft</td><td class="price">£60/week</td></tr>
+          </table>
+
+          <div class="storage-extras">
+            <div class="extra">
+              <span class="x-icon">📦</span>
+              Packing Supplies
+              <span style="display:block;font-weight:600;margin-top:4px;font-size:12px">Boxes, tape, bubble wrap</span>
+            </div>
+            <div class="extra">
+              <span class="x-icon">🔒</span>
+              24/7 Security
+              <span style="display:block;font-weight:600;margin-top:4px;font-size:12px">CCTV &amp; alarm system</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- ════════════════════════════════════════════════
+       SERVICES GRID
+       ════════════════════════════════════════════════ -->
+  <section id="services">
+    <div class="container">
+      <div class="tag">⚡ Our Services</div>
+      <h2 class="section-title">More Than Just Parking</h2>
+      <p class="section-sub">Everything you need in one place — secure, modern, and built for Hoxton.</p>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <span class="s-icon">🔒</span>
+          <h3>24/7 CCTV &amp; Security</h3>
+          <p>Fully monitored underground facility with alarm system and on-site security patrols.</p>
+        </div>
+        <div class="service-card">
+          <span class="s-icon">🚲</span>
+          <h3>Cycle Storage</h3>
+          <p>Registered cycle storage approved by Cyclescheme. Secure racks with CCTV coverage.</p>
+        </div>
+        <div class="service-card">
+          <span class="s-icon">🔌</span>
+          <h3>EV Charging</h3>
+          <p>7kW and 22kW charging points available. Pay-per-use or monthly subscription.</p>
+        </div>
+        <div class="service-card">
+          <span class="s-icon">☕</span>
+          <h3>Customer Coffee Area</h3>
+          <p>Complimentary tea and coffee while you wait. Warm waiting area on-site.</p>
+        </div>
+        <div class="service-card">
+          <span class="s-icon">♿</span>
+          <h3>Wheelchair Accessible</h3>
+          <p>Step-free access throughout. Designated accessible bays near the entrance.</p>
+        </div>
+        <div class="service-card">
+          <span class="s-icon">📦</span>
+          <h3>Packing Supplies</h3>
+          <p>Boxes, tape, bubble wrap and packing materials available to buy on-site.</p>
+        </div>
+        <div class="service-card">
+          <span class="s-icon">🚗</span>
+          <h3>Underground Parking</h3>
+          <p>80 secure underground bays. Protected from weather, well-lit, and monitored.</p>
+        </div>
+        <div class="service-card">
+          <span class="s-icon">📋</span>
+          <h3>Monthly Accounts</h3>
+          <p>One monthly invoice for regular parkers. Reserved bay and 10% discount included.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════
+       CONTACT & LEGAL
+       ════════════════════════════════════════════════ -->
+  <section id="contact">
+    <div class="container">
+      <div class="tag">📞 Get in Touch</div>
+      <h2 class="section-title">Visit or Call Us</h2>
+      <p class="section-sub">We're open 7 days a week. Drop by, give us a call, or send a message.</p>
+
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h3>📍 Contact Details</h3>
+          <div class="contact-detail">
+            <span class="cd-icon">📍</span>
+            <span>244-278 Crondall Street<br />London N1 6JF</span>
+          </div>
+          <div class="contact-detail">
+            <span class="cd-icon">📞</span>
+            <span><a href="tel:02077394414" style="font-weight:900">020 7739 4414</a></span>
+          </div>
+          <div class="contact-detail">
+            <span class="cd-icon">✉️</span>
+            <span><a href="mailto:info@citycarparks.co.uk" style="font-weight:900">info@citycarparks.co.uk</a></span>
+          </div>
+
+          <h3 style="margin-top:24px">🕐 Opening Hours</h3>
+          <table class="hours-table">
+            <tr><td>Monday – Friday</td><td>6:00 AM – 10:00 PM</td></tr>
+            <tr><td>Saturday</td><td>7:00 AM – 10:00 PM</td></tr>
+            <tr><td>Sunday &amp; Bank Holidays</td><td>8:00 AM – 8:00 PM</td></tr>
+            <tr><td>Storage Access</td><td>24/7 · Keycode Entry</td></tr>
+            <tr><td>Monthly Subscribers</td><td>24/7 · ANPR Access</td></tr>
+          </table>
+        </div>
+
+        <div class="contact-card">
+          <h3>🗺️ Find Us</h3>
+          <p style="font-size:14px;font-weight:600;margin-bottom:12px;line-height:1.7">
+            We're located on Crondall Street, just off Old Street roundabout in the heart of Hoxton / Shoreditch. 
+            Two minutes from Hoxton Overground station. Easy access from Old Street, City Road, and Shoreditch High Street.
+          </p>
+          <div style="background:#FFCC00;border:2px solid #000;border-radius:12px;padding:20px;text-align:center;font-weight:800;font-size:14px">
+            ⤴ 244-278 Crondall Street, London N1 6JF<br />
+            <span style="font-weight:600;display:block;margin-top:6px">Hoxton Overground: 2 min walk</span>
+          </div>
+          <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+            <a href="https://www.google.com/maps/dir//244-278+Crondall+Street+London+N1+6JF" target="_blank" class="btn-black" style="flex:1;justify-content:center;font-size:13px;padding:12px">Get Directions →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Legal -->
+      <div class="legal-section">
+        <div class="legal-card">
+          <h3>🔐 Privacy Policy</h3>
+          <p><strong>What we collect:</strong> Name, email address, vehicle registration number, payment information (processed securely by Stripe/PayPal).</p>
+          <p style="margin-top:8px"><strong>How we use it:</strong> Booking management, payment processing, customer service, and occasional operational communications. We do <em>not</em> share your data with third parties except payment processors.</p>
+          <p style="margin-top:8px"><strong>Retention:</strong> Account data retained for 12 months after last booking. Payment data handled by our processors per their policies.</p>
+          <p style="margin-top:8px"><strong>Your rights:</strong> Under UK GDPR you have the right to access, rectify, erase, or port your data. Contact us at any time.</p>
+        </div>
+        <div class="legal-card">
+          <h3>📋 Terms of Service</h3>
+          <ul>
+            <li>All bookings are subject to availability at the time of reservation.</li>
+            <li>Monthly accounts require 28 days' notice for cancellation.</li>
+            <li>Storage units require a refundable £50 security deposit.</li>
+            <li>Vehicles are parked at owner's risk. CCTV operates 24/7 for security.</li>
+            <li>No hazardous materials permitted in storage units.</li>
+            <li>Storage access via keycode — do not share your code.</li>
+            <li>Full terms available on request. Contact us for details.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════
+       FOOTER
+       ════════════════════════════════════════════════ -->
   <footer>
     <div class="f-inner">
-      <div class="f-brand">City Car Parks SaaS</div>
-      <p>244-278 Crondall Street · London N1 6JF · <a href="tel:02077394414">020 7739 4414</a></p>
-      <div class="f-social">
-        <a href="https://github.com/darrenhopwood13-maker/city-car-parks-saas" target="_blank" title="GitHub">⌂</a>
-        <a href="#" title="Twitter">𝕏</a>
-        <a href="#" title="LinkedIn">in</a>
-      </div>
-      <p style="font-size:12px">© 2026 City Car Parks & Storage · Built by Randall AI<br />SaaS concept & design — transforming traditional businesses through technology</p>
+      <div class="f-brand">City Car Parks &amp; Storage</div>
+      <p>244-278 Crondall Street · London N1 6JF</p>
+      <p><a href="tel:02077394414">020 7739 4414</a> · <a href="mailto:info@citycarparks.co.uk">info@citycarparks.co.uk</a></p>
+      <div class="f-hr"></div>
+      <p style="font-weight:900;font-size:15px;color:#FFCC00">Family-Run Since 1998</p>
+      <p style="font-size:13px;color:#999;margin-top:4px">Company No. 07076673</p>
+      <div class="f-hr"></div>
+      <p class="f-small">© 2026 City Car Parks &amp; Storage Ltd. All rights reserved.</p>
     </div>
   </footer>
 
   <script>
     // ── Revenue Chart ──
-    const data = [18, 24, 21, 28, 32, 30, 36, 34, 40, 38, 44, 42];
-    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    const chart = document.getElementById('revenueChart');
-    const labels = document.getElementById('barLabels');
-    const max = Math.max(...data);
-    
-    data.forEach((v,i) => {
-      const bar = document.createElement('div');
-      bar.className = 'bar';
-      const pct = (v / max) * 100;
-      bar.style.height = pct + '%';
-      bar.title = `£${v}K`;
-      chart.appendChild(bar);
-      
-      const lbl = document.createElement('span');
-      lbl.textContent = months[i];
-      labels.appendChild(lbl);
-    });
+    (function() {
+      const data = [3.6, 4.1, 3.9, 4.5, 4.8, 5.2];
+      const months = ['Jan','Feb','Mar','Apr','May','Jun'];
+      const chart = document.getElementById('revenueChart');
+      const labels = document.getElementById('barLabels');
+      if (!chart || !labels) return;
+      const max = Math.max(...data);
 
-    // ── Animated scroll reveal ──
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
+      data.forEach((v, i) => {
+        const bar = document.createElement('div');
+        bar.className = 'bar';
+        const pct = (v / max) * 100;
+        bar.style.height = pct + '%';
+        bar.title = '£' + v + 'k';
+        chart.appendChild(bar);
+
+        const lbl = document.createElement('span');
+        lbl.textContent = months[i];
+        labels.appendChild(lbl);
+      });
+    })();
+
+    // ── Scroll Reveal ──
+    (function() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+      // Also observe cards that might not have the class
+      const selectors = '.stat-card, .booking-entry, .partner-card, .service-card, .fp-unit, .legal-card, .contact-card, .monthly-promo, .floor-plan, .pricing-card';
+      document.querySelectorAll(selectors).forEach(el => {
+        if (!el.classList.contains('fade-in')) {
+          el.classList.add('fade-in');
+          observer.observe(el);
         }
       });
-    }, { threshold: 0.1 });
+    })();
 
-    document.querySelectorAll('.f-card, .b-step, .rev-card, .t-card').forEach(el => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(20px)';
-      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-      observer.observe(el);
-    });
-
-    // ── Tab switching ──
-    document.querySelectorAll('.dp-tabs button').forEach(btn => {
-      btn.addEventListener('click', function() {
-        document.querySelectorAll('.dp-tabs button').forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
+    // ── Mobile Hamburger ──
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    if (hamburger && navLinks) {
+      hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('open');
       });
-    });
 
-    // ── Smooth scroll ──
+      // Close nav on link click
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('open');
+        });
+      });
+    }
+
+    // ── Smooth scroll for all anchor links ──
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', e => {
+        const href = a.getAttribute('href');
+        if (href === '#') return;
         e.preventDefault();
-        const target = document.querySelector(a.getAttribute('href'));
+        const target = document.querySelector(href);
         if (target) target.scrollIntoView({ behavior: 'smooth' });
       });
     });
